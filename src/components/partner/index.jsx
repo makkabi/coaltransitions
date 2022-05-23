@@ -27,34 +27,29 @@ export default ({ name, summary, link, logo }) => (
   </div>
 );
 
-export const fragment = graphql`
-  fragment PartnerPage on WpPage_Acf_Content_Partner {
-    name
-    summary
-    link
-    logo {
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 800) {
-            ...Picture
-          }
-        }
+export const fragment = graphql`fragment PartnerPage on WpPage_Acf_Content_Partner {
+  name
+  summary
+  link
+  logo {
+    localFile {
+      childImageSharp {
+        gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
       }
     }
   }
+}
 
-  fragment PartnerAbout on WpAboutPage_Acf_Content_Partner {
-    name
-    summary
-    link
-    logo {
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 800) {
-            ...Picture
-          }
-        }
+fragment PartnerAbout on WpAboutPage_Acf_Content_Partner {
+  name
+  summary
+  link
+  logo {
+    localFile {
+      childImageSharp {
+        gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
       }
     }
   }
+}
 `;

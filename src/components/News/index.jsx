@@ -7,34 +7,28 @@ import Intro from '../intro';
 
 import style from './style';
 
-export const fragment = graphql`
-  fragment NewsEntry on WpNewsEntry {
-    date(formatString: "DD. MMMM YYYY")
-    title
-
-    acf {
-      intro
-
-      content {
-        ... on WpNewsEntry_Acf_Content_Text {
-          text
-        }
-
-        ... on WpNewsEntry_Acf_Content_Image {
-          image {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...Picture
-                }
-              }
+export const fragment = graphql`fragment NewsEntry on WpNewsEntry {
+  date(formatString: "DD. MMMM YYYY")
+  title
+  acf {
+    intro
+    content {
+      ... on WpNewsEntry_Acf_Content_Text {
+        text
+      }
+      ... on WpNewsEntry_Acf_Content_Image {
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
             }
-            caption
           }
+          caption
         }
       }
     }
   }
+}
 `;
 
 const News = ({ title, date, acf: { intro, content } }) => (

@@ -31,12 +31,11 @@ const BurgerMenu = ({ items, socialMediaChannels }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <React.Fragment>
       <style jsx>{style}</style>
       {itemFirstLevel.styles}
       {socialMediaIcon.styles}
       {barsIcon.styles}
-
       <button
         type="button"
         className="burger"
@@ -45,7 +44,6 @@ const BurgerMenu = ({ items, socialMediaChannels }) => {
         <BarsIcon className={barsIcon.className} />
         <span className="burger-label">Menu</span>
       </button>
-
       <Modal
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
@@ -98,7 +96,7 @@ const BurgerMenu = ({ items, socialMediaChannels }) => {
           </div>
         )}
       </Modal>
-    </>
+    </React.Fragment>
   );
 };
 

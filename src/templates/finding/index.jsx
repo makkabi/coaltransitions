@@ -88,59 +88,47 @@ const Page = ({
 
 export default withLayout(Page);
 
-export const query = graphql`
-  query($databaseId: Int, $relatedPublications: [Int!]) {
-    publications: allWpPublication(
-      filter: { databaseId: { in: $relatedPublications } }
-    ) {
-      nodes {
-        ...publicationListItem
+export const query = graphql`query ($databaseId: Int, $relatedPublications: [Int!]) {
+  publications: allWpPublication(filter: {databaseId: {in: $relatedPublications}}) {
+    nodes {
+      ...publicationListItem
+    }
+  }
+  finding: wpFinding(databaseId: {eq: $databaseId}) {
+    title
+    featuredImage {
+      node {
+        caption
+        localFile {
+          childImageSharp {
+            gatsbyImageData(width: 600, placeholder: BLURRED, layout: CONSTRAINED)
+          }
+        }
       }
     }
-
-    finding: wpFinding(databaseId: { eq: $databaseId }) {
-      title
-      featuredImage {
-        node {
-          caption
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 600) {
-                ...Picture
-              }
-            }
-          }
-        }
+    acf {
+      intro
+      additionalLinks {
+        link
+        linktext
       }
-
-      acf {
-        intro
-        additionalLinks {
-          link
-          linktext
+      content {
+        __typename
+        ... on WpFinding_Acf_Content_Text {
+          text
         }
-
-        content {
-          __typename
-
-          ... on WpFinding_Acf_Content_Text {
-            text
-          }
-
-          ... on WpFinding_Acf_Content_Image {
-            image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...Picture
-                  }
-                }
+        ... on WpFinding_Acf_Content_Image {
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
               }
-              caption
             }
+            caption
           }
         }
       }
     }
   }
+}
 `;

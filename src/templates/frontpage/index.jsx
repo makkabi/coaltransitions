@@ -67,65 +67,47 @@ const Page = ({
   </>
 );
 
-export const query = graphql`
-  query($databaseId: Int) {
-    page: wpPage(databaseId: { eq: $databaseId }) {
-      title
-      acf {
-        content {
-          __typename
-
-          ... on WpPage_Acf_Content_AboutTeaser {
-            summary
-            title
-          }
-
-          ... on WpPage_Acf_Content_FeaturedPublications {
-            title
-            summary
-            image {
-              caption
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...Picture
-                  }
-                }
-              }
-            }
-
-            publications {
-              ... on WpPublication {
-                ...publicationListItem
+export const query = graphql`query ($databaseId: Int) {
+  page: wpPage(databaseId: {eq: $databaseId}) {
+    title
+    acf {
+      content {
+        __typename
+        ... on WpPage_Acf_Content_AboutTeaser {
+          summary
+          title
+        }
+        ... on WpPage_Acf_Content_FeaturedPublications {
+          title
+          summary
+          image {
+            caption
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
               }
             }
           }
-
-          ... on WpPage_Acf_Content_Findings {
-            title
-            image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 1200) {
-                    ...Picture
-                  }
-                }
+          publications {
+            ... on WpPublication {
+              ...publicationListItem
+            }
+          }
+        }
+        ... on WpPage_Acf_Content_Findings {
+          title
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
               }
             }
           }
-
-          # // TODO: https://github.com/gatsbyjs/gatsby-source-wordpress-experimental/issues/311
-          #... on WpPage_Acf_Content_FeaturedNews {
-          #  news {
-          #    ... on WpNewsEntry {
-          #      ...NewsListItem
-          #    }
-          #  }
-          #}
         }
       }
     }
   }
+}
 `;
 
 export default withLayout(Page);

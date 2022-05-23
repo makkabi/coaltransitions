@@ -8,35 +8,30 @@ import style from './style';
 export default (props) => {
   const {
     researchers: { nodes: items },
-  } = useStaticQuery(graphql`
-    query Researchers {
-      researchers: allWpResearcher {
-        nodes {
-          title
-          acf {
-            affiliation
-            background
-            email
-            image {
-              localFile {
-                childImageSharp {
-                  fixed(height: 400, width: 400) {
-                    src
-                    srcSet
-                    srcSetWebp
-                  }
-                }
-              }
+  } = useStaticQuery(graphql`query Researchers {
+  researchers: allWpResearcher {
+    nodes {
+      title
+      acf {
+        affiliation
+        background
+        email
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(height: 400, width: 400, placeholder: BLURRED, layout: FIXED)
             }
-            partOfCoalexitGroup
-            phone
-            pinToTop
-            topics
           }
         }
+        partOfCoalexitGroup
+        phone
+        pinToTop
+        topics
       }
     }
-  `);
+  }
+}
+`);
 
   // Sort researchers by second name
   const researchers = items.sort(sortBySecondName);

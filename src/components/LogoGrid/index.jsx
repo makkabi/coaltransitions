@@ -5,21 +5,18 @@ import Picture from '../picture';
 
 import style from './style';
 
-export const fragment = graphql`
-  fragment LogoGrid on WpPage_Acf_Content_Logogrid {
-    logos {
-      link
-      logo {
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 200) {
-              ...Picture
-            }
-          }
+export const fragment = graphql`fragment LogoGrid on WpPage_Acf_Content_Logogrid {
+  logos {
+    link
+    logo {
+      localFile {
+        childImageSharp {
+          gatsbyImageData(width: 200, placeholder: BLURRED, layout: CONSTRAINED)
         }
       }
     }
   }
+}
 `;
 
 const LogoGrid = ({ logos, ...props }) => (

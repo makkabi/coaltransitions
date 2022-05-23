@@ -93,25 +93,22 @@ export default ({
   );
 };
 
-export const fragment = graphql`
-  fragment findingListItem on WpFinding {
-    slug
-    title
-    featuredImage {
-      node {
-        caption
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 1200) {
-              ...Picture
-            }
-          }
+export const fragment = graphql`fragment findingListItem on WpFinding {
+  slug
+  title
+  featuredImage {
+    node {
+      caption
+      localFile {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
         }
       }
     }
-    acf {
-      intro
-      factNumber
-    }
   }
+  acf {
+    intro
+    factNumber
+  }
+}
 `;

@@ -21,7 +21,7 @@ const Page = ({
     },
   },
 }) => (
-  <>
+  <React.Fragment>
     <style jsx>{style}</style>
 
     <Helmet title={title} />
@@ -44,7 +44,7 @@ const Page = ({
         <BlockSwitch blocks={content} typePrefix="WpPage_Acf_Content_" />
       </Constraint>
     </article>
-  </>
+  </React.Fragment>
 );
 
 export default withLayout(Page);
@@ -57,74 +57,58 @@ export const query = graphql`
     ) {
       ...SubMenuPages
     }
-
     page: wpPage(databaseId: { eq: $databaseId }) {
       title
-
       featuredImage {
         node {
           caption
           localFile {
             childImageSharp {
-              fluid(maxWidth: 600) {
-                ...Picture
-              }
+              gatsbyImageData(
+                width: 600
+                placeholder: BLURRED
+                layout: CONSTRAINED
+              )
             }
           }
         }
       }
-
       acf {
         intro
         content {
           __typename
-
           ... on WpPage_Acf_Content_Text {
             text
           }
-
           ... on WpPage_Acf_Content_Image {
             image {
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 800) {
-                    ...Picture
-                  }
+                  gatsbyImageData(
+                    width: 800
+                    placeholder: BLURRED
+                    layout: CONSTRAINED
+                  )
                 }
               }
               caption
             }
           }
-
           ... on WpPage_Acf_Content_Researchers {
             showresearchers
           }
-
           ... on WpPage_Acf_Content_Researchprojectslist {
             ...ResearchProjectList
           }
-
           ... on WpPage_Acf_Content_Newsletter {
             ...Newsletter
           }
-
           ... on WpPage_Acf_Content_Logogrid {
             ...LogoGrid
           }
-
           ... on WpPage_Acf_Content_Partner {
             ...PartnerPage
           }
-
-          # // TODO: https://github.com/gatsbyjs/gatsby-source-wordpress-experimental/issues/311
-          #... on WpPage_Acf_Content_FeaturedNews {
-          #  news {
-          #    ... on WpNewsEntry {
-          #      ...NewsListItem
-          #    }
-          #  }
-          #}
-
           ... on WpPage_Acf_Content_RelatedPublications {
             ...PublicationList
           }

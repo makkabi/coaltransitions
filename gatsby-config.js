@@ -22,16 +22,16 @@ module.exports = {
 
   plugins: [
     {
-      resolve: 'gatsby-source-wordpress-experimental',
+      resolve: 'gatsby-source-wordpress',
       options: {
         url: env.WP_ENDPOINT,
 
-        auth: {
+        /*         auth: {
           htaccess: {
             username: env.WP_AUTH_USERNAME,
             password: env.WP_AUTH_PASSWORD,
           },
-        },
+        }, */
 
         schema: {
           timeout: 60000,
@@ -66,6 +66,7 @@ module.exports = {
     'gatsby-plugin-styled-jsx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-advanced-sitemap',
   ],

@@ -36,7 +36,7 @@ const NewsList = ({ title, nodes = [], padding = false }) => (
     {Array.isArray(nodes) && (
       <ul>
         {nodes.map((node) => (
-          <li>
+          <li key={node.uri}>
             <NewsListItem {...node} />
           </li>
         ))}
