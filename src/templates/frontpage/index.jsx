@@ -67,39 +67,47 @@ const Page = ({
   </>
 );
 
-export const query = graphql`query ($databaseId: Int) {
-  page: wpPage(databaseId: {eq: $databaseId}) {
-    title
-    acf {
-      content {
-        __typename
-        ... on WpPage_Acf_Content_AboutTeaser {
-          summary
-          title
-        }
-        ... on WpPage_Acf_Content_FeaturedPublications {
-          title
-          summary
-          image {
-            caption
-            localFile {
-              childImageSharp {
-                gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
+export const query = graphql`
+  query ($databaseId: Int) {
+    page: wpPage(databaseId: { eq: $databaseId }) {
+      title
+      acf {
+        content {
+          __typename
+          ... on WpPage_Acf_Content_AboutTeaser {
+            summary
+            title
+          }
+          ... on WpPage_Acf_Content_FeaturedPublications {
+            title
+            summary
+            image {
+              altText
+              caption
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 800
+                    placeholder: BLURRED
+                    layout: CONSTRAINED
+                  )
+                }
+              }
+            }
+            publications {
+              ... on WpPublication {
+                ...publicationListItem
               }
             }
           }
-          publications {
-            ... on WpPublication {
-              ...publicationListItem
-            }
-          }
-        }
-        ... on WpPage_Acf_Content_Findings {
-          title
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+          ... on WpPage_Acf_Content_Findings {
+            title
+            image {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+                }
               }
             }
           }
@@ -107,7 +115,6 @@ export const query = graphql`query ($databaseId: Int) {
       }
     }
   }
-}
 `;
 
 export default withLayout(Page);
