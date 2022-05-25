@@ -27,6 +27,10 @@ export default css`
     width: 100%;
   }
 
+  .image-container {
+    max-width: 1200px;
+  }
+
   @media ${mq.tablet} {
     .image-container {
       width: 75%;
