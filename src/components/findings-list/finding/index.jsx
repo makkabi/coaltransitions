@@ -16,7 +16,8 @@ import Stroke2Blue from '../../../../static/strokes/stroke-2-blue.svg';
 
 import Stroke3Green from '../../../../static/strokes/stroke-3-green.svg';
 import Stroke3Blue from '../../../../static/strokes/stroke-3-blue.svg';
-
+import { getImage } from 'gatsby-plugin-image';
+import Figure from '../../figure';
 const STROKES = [
   [Stroke1Blue, Stroke1Green],
   [Stroke2Blue, Stroke2Green],
@@ -35,9 +36,10 @@ export default ({
   fullsizeImage = false,
 }) => {
   const url = `/findings/${slug ? `${slug}/` : ''}`;
-  const [Stroke1, Stroke2] = STROKES[
-    Math.floor(Math.random() * STROKES.length)
-  ];
+  const [Stroke1, Stroke2] =
+    STROKES[Math.floor(Math.random() * STROKES.length)];
+
+  const image = getImage(featuredImage.localFile);
 
   return (
     <section
@@ -57,9 +59,10 @@ export default ({
 
       <div className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
-          {featuredImage?.localFile && (
-            <Picture
-              image={featuredImage.localFile}
+          {image && (
+            <Figure
+              alt={featuredImage.altText}
+              image={image}
               caption={featuredImage.caption}
               captionClassName={captionStyle.className}
             />
@@ -93,22 +96,23 @@ export default ({
   );
 };
 
-export const fragment = graphql`fragment findingListItem on WpFinding {
-  slug
-  title
-  featuredImage {
-    node {
-      caption
-      localFile {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+export const fragment = graphql`
+  fragment findingListItem on WpFinding {
+    slug
+    title
+    featuredImage {
+      node {
+        caption
+        localFile {
+          childImageSharp {
+            gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+          }
         }
       }
     }
+    acf {
+      intro
+      factNumber
+    }
   }
-  acf {
-    intro
-    factNumber
-  }
-}
 `;
