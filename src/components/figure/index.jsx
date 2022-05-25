@@ -29,7 +29,7 @@ export default ({
   }
 
   return (
-    <figure>
+    <figure {...rest}>
       <style jsx>{style}</style>
 
       <GatsbyImage alt={altText} image={image} />
