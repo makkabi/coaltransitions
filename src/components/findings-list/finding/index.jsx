@@ -40,7 +40,7 @@ export default ({
     STROKES[Math.floor(Math.random() * STROKES.length)];
 
   const image = getImage(featuredImage.localFile);
-
+  console.log({ featuredImage });
   return (
     <section
       className={classnames(
@@ -61,7 +61,7 @@ export default ({
         <Link to={url} className={imageLink.className} rel="nofollow">
           {image && (
             <Figure
-              alt={featuredImage.altText}
+              altText={featuredImage.altText}
               image={image}
               caption={featuredImage.caption}
               captionClassName={captionStyle.className}
