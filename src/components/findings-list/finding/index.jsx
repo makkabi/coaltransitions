@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import Link from 'gatsby-link';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { graphql } from 'gatsby';
 
 import ArrowIcon from '../../../../static/icons/arrow-alt-right.svg';
@@ -36,11 +36,16 @@ export default ({
   fullsizeImage = false,
 }) => {
   const url = `/findings/${slug ? `${slug}/` : ''}`;
-  const [Stroke1, Stroke2] =
-    STROKES[Math.floor(Math.random() * STROKES.length)];
+
+  const strokesIndex = useMemo(
+    () => Math.floor(Math.random() * STROKES.length),
+    []
+  );
+
+  const [Stroke1, Stroke2] = STROKES[strokesIndex];
 
   const image = getImage(featuredImage.localFile);
-  console.log({ featuredImage });
+
   return (
     <section
       className={classnames(
