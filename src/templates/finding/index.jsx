@@ -80,7 +80,7 @@ const Page = ({
           )}
 
           {publications && publications.length > 0 && (
-            <div className="publications-list-contaioner">
+            <div className="publications-list-container">
               <PublicationList
                 publications={publications}
                 title="Related Publications"

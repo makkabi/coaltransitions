@@ -111,12 +111,12 @@ export default css`
     }
   }
 
-  .publications-list-contaioner {
+  .publications-list-container {
     margin-left: -1rem;
   }
 
   @media ${mq.desktop} {
-    .publications-list-contaioner {
+    .publications-list-container {
       margin-left: calc(-15% - 10.5rem);
     }
   }
