@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import Footer from '../footer';
@@ -39,7 +39,7 @@ export default (Children) => (props) => {
   `);
 
   return (
-    <>
+    <Fragment>
       <style jsx>{style}</style>
 
       <Helmet titleTemplate={`%s | ${title}`} />
@@ -49,6 +49,6 @@ export default (Children) => (props) => {
         <Children {...props} />
         <Footer {...footerMenu} />
       </div>
-    </>
+    </Fragment>
   );
 };
