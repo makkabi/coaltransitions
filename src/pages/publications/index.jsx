@@ -48,10 +48,8 @@ const Page = ({
   },
 }) => {
   const tags = extractPublicationsTags(initialPublications);
-  const [
-    minPublicationYear,
-    maxPublicationYear,
-  ] = extractPublicationYearExtremes(initialPublications);
+  const [minPublicationYear, maxPublicationYear] =
+    extractPublicationYearExtremes(initialPublications);
   const authors = extractPublicationsAuthors(initialPublications);
 
   // eslint-disable-next-line no-unused-vars
@@ -129,6 +127,7 @@ const Page = ({
                   <Select
                     placeholder="Authors"
                     name="author"
+                    key="authors"
                     options={authors.sort((a, b) =>
                       sortBySecondName({ title: a.label }, { title: b.label })
                     )}
@@ -155,6 +154,7 @@ const Page = ({
                   <Select
                     placeholder="Keywords"
                     name="tags"
+                    key="tags"
                     options={tags.sort(({ label: aLabel }, { label: bLabel }) =>
                       aLabel.toLowerCase().localeCompare(bLabel.toLowerCase())
                     )}
@@ -181,6 +181,7 @@ const Page = ({
 
                 [
                   <Slider
+                    key="year"
                     min={minPublicationYear}
                     max={maxPublicationYear}
                     value={
@@ -201,6 +202,7 @@ const Page = ({
                   />,
 
                   <Button
+                    key="reset"
                     onClick={(event) => {
                       event.preventDefault();
                       setFilter((state) => ({
