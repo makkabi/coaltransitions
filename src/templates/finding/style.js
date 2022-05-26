@@ -7,6 +7,7 @@ import { colors, mixins, mq } from '../../token';
 export default css`
   .header {
     margin-bottom: 1.5rem;
+    width: 100%;
   }
 
   @media ${mq.tablet} {
