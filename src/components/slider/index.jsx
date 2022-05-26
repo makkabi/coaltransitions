@@ -1,4 +1,4 @@
-import { Range } from 'rc-slider';
+import Slider from 'rc-slider';
 import React from 'react';
 
 import style from './style';
@@ -6,6 +6,6 @@ import style from './style';
 export default (props) => (
   <div className="slider-container">
     <style jsx>{style}</style>
-    <Range {...props} />
+    <Slider range {...props} />
   </div>
 );
