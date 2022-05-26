@@ -6,6 +6,9 @@ import AuthorList from '../../author-list';
 import style, { linkTitle, linkPicture } from './style';
 import Picture from '../../picture';
 import TagList from '../../tag-list';
+import Figure from '../../figure';
+import { captionStyle } from '../../findings-list/finding/style';
+import { getImage } from 'gatsby-plugin-image';
 
 export const fragment = graphql`
   fragment publicationListItem on WpPublication {
@@ -13,11 +16,10 @@ export const fragment = graphql`
     title
     featuredImage {
       node {
+        altText
         localFile {
           childImageSharp {
-            fluid(maxWidth: 400) {
-              ...Picture
-            }
+            gatsbyImageData(width: 400, placeholder: BLURRED)
           }
         }
       }
@@ -44,40 +46,51 @@ export default ({
   featuredImage,
   url,
   onFilter,
-}) => (
-  <div className="publication">
-    <style jsx>{style}</style>
-    {linkTitle.styles}
-    {linkPicture.styles}
+}) => {
+  const image = getImage(featuredImage?.node?.localFile);
 
-    <div className="cover-image-container">
-      <p className="year">{year}</p>
+  return (
+    <div className="publication">
+      <style jsx>{style}</style>
+      {linkTitle.styles}
+      {linkPicture.styles}
 
-      {featuredImage?.node?.localFile && (
-        <Link to={url} className={linkPicture.className} rel="nofollow">
-          <Picture image={featuredImage.node.localFile} />
-        </Link>
-      )}
+      <div className="cover-image-container">
+        <p className="year">{year}</p>
+
+        {featuredImage?.node?.localFile && (
+          <Link to={url} className={linkPicture.className} rel="nofollow">
+            {image && (
+              <Figure
+                altText={featuredImage.altText}
+                image={image}
+                caption={featuredImage.caption}
+                captionClassName={captionStyle.className}
+              />
+            )}
+          </Link>
+        )}
+      </div>
+
+      <div className="content-container">
+        <h2 className="title">
+          <Link to={url} className={linkTitle.className}>
+            <span dangerouslySetInnerHTML={{ __html: title }} />
+          </Link>
+        </h2>
+
+        {author && (
+          <div className="author-container">
+            <AuthorList authors={author} onFilter={onFilter} trim={5} />
+          </div>
+        )}
+
+        {tags && (
+          <div className="tags-container">
+            <TagList onFilter={onFilter} tags={tags} />
+          </div>
+        )}
+      </div>
     </div>
-
-    <div className="content-container">
-      <h2 className="title">
-        <Link to={url} className={linkTitle.className}>
-          <span dangerouslySetInnerHTML={{ __html: title }} />
-        </Link>
-      </h2>
-
-      {author && (
-        <div className="author-container">
-          <AuthorList authors={author} onFilter={onFilter} trim={5} />
-        </div>
-      )}
-
-      {tags && (
-        <div className="tags-container">
-          <TagList onFilter={onFilter} tags={tags} />
-        </div>
-      )}
-    </div>
-  </div>
-);
+  );
+};
