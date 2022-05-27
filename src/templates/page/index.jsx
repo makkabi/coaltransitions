@@ -91,11 +91,7 @@ export const query = graphql`
               caption
               localFile {
                 childImageSharp {
-                  gatsbyImageData(
-                    width: 800
-                    placeholder: BLURRED
-                    layout: CONSTRAINED
-                  )
+                  gatsbyImageData(width: 800, placeholder: BLURRED)
                 }
               }
             }

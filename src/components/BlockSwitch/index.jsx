@@ -4,13 +4,14 @@ import LogoGrid from '../LogoGrid';
 import Newsletter from '../Newsletter';
 import NewsList from '../NewsList';
 import Partner from '../partner';
-import Picture from '../picture';
 import PublicationList from '../publication-list';
 import ResearchersList from '../researchers-list';
 import ResearchProjectsList from '../research-projects-list';
 import Richtext from '../richtext';
 
 import style from './style';
+import Figure from '../figure';
+import { getImage } from 'gatsby-plugin-image';
 
 const BlockSwitch = ({ blocks, typePrefix }) => (
   <div className="block-content">
@@ -27,12 +28,14 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
               return <Richtext content={block.text} />;
 
             case `${typePrefix}Image`:
-              return (
-                <Picture
-                  image={block?.image?.localFile}
+              const image = getImage(block?.image?.localFile);
+              return image ? (
+                <Figure
+                  altText={block.image.altText}
+                  image={image}
                   caption={block?.image?.caption}
                 />
-              );
+              ) : null;
 
             case `${typePrefix}Researchers`:
               return <ResearchersList />;
