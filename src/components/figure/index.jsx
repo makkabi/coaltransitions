@@ -17,11 +17,10 @@ import { GatsbyImage } from 'gatsby-plugin-image';
  */
 export default ({
   image,
-  type = 'fluid',
-  className,
   caption = null,
   captionClassName = null,
   altText = '',
+  className = '',
   ...rest
 }) => {
   if (!image) {
