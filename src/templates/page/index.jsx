@@ -5,11 +5,12 @@ import React from 'react';
 import BlockSwitch from '../../components/BlockSwitch';
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
-import Picture from '../../components/picture';
 import SubMenu from '../../components/sub-menu';
 import withLayout from '../../components/with-layout';
 
 import style from './style';
+import { getImage } from 'gatsby-plugin-image';
+import Figure from '../../components/figure';
 
 const Page = ({
   data: {
@@ -20,37 +21,40 @@ const Page = ({
       acf: { intro, content },
     },
   },
-}) => (
-  <React.Fragment>
-    <style jsx>{style}</style>
+}) => {
+  const image = getImage(featuredImage?.node?.localFile);
 
-    <Helmet title={title} />
+  return (
+    <React.Fragment>
+      <style jsx>{style}</style>
 
-    <SubMenu {...subMenuItems} />
+      <Helmet title={title} />
 
-    <article>
-      <Constraint topLevel>
-        {featuredImage?.node?.localFile && (
-          <Picture
-            image={featuredImage.node.localFile}
-            caption={featuredImage?.node?.caption}
-          />
-        )}
+      <SubMenu {...subMenuItems} />
 
-        <h1 dangerouslySetInnerHTML={{ __html: title }} />
+      <article>
+        <Constraint topLevel>
+          {image && (
+            <Figure
+              altText={featuredImage.altText}
+              image={image}
+              caption={featuredImage.caption}
+            />
+          )}
 
-        {intro && <Intro intro={intro} />}
-
-        <BlockSwitch blocks={content} typePrefix="WpPage_Acf_Content_" />
-      </Constraint>
-    </article>
-  </React.Fragment>
-);
+          <h1 dangerouslySetInnerHTML={{ __html: title }} />
+          {intro && <Intro intro={intro} />}
+          <BlockSwitch blocks={content} typePrefix="WpPage_Acf_Content_" />
+        </Constraint>
+      </article>
+    </React.Fragment>
+  );
+};
 
 export default withLayout(Page);
 
 export const query = graphql`
-  query($databaseId: Int, $siblings: [Int!]) {
+  query ($databaseId: Int, $siblings: [Int!]) {
     subMenuItems: allWpPage(
       sort: { fields: menuOrder, order: ASC }
       filter: { databaseId: { in: $siblings } }
@@ -62,6 +66,7 @@ export const query = graphql`
       featuredImage {
         node {
           caption
+          altText
           localFile {
             childImageSharp {
               gatsbyImageData(
@@ -82,6 +87,8 @@ export const query = graphql`
           }
           ... on WpPage_Acf_Content_Image {
             image {
+              altText
+              caption
               localFile {
                 childImageSharp {
                   gatsbyImageData(
@@ -91,7 +98,6 @@ export const query = graphql`
                   )
                 }
               }
-              caption
             }
           }
           ... on WpPage_Acf_Content_Researchers {
