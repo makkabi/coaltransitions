@@ -62,7 +62,7 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
 
             case `${typePrefix}RelatedPublications`:
               return (
-                <div className="publications-list-contaioner">
+                <div className="publications-list-container">
                   <PublicationList {...props} />
                 </div>
               );
