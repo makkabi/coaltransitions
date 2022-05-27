@@ -1,55 +1,63 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Picture from '../picture';
 import Richtext from '../richtext';
 import style from './style';
+import { getImage } from 'gatsby-plugin-image';
+import Figure from '../figure';
 
-export default ({ name, summary, link, logo }) => (
-  <div className="partner">
-    <style jsx>{style}</style>
+export default ({ name, summary, link, logo }) => {
+  const image = getImage(logo?.localFile);
 
-    {logo && logo.localFile && (
-      <a href={link} rel="nofollow" className="image-container">
-        <Picture image={logo.localFile} />
-      </a>
-    )}
+  return (
+    <div className="partner">
+      <style jsx>{style}</style>
 
-    <div className="content-container">
-      <h3 className="title">
-        <a href={link} className="title-link">
-          {name}
+      {image && (
+        <a href={link} rel="nofollow" className="image-container">
+          <Figure altText={logo.altText} image={image} />
         </a>
-      </h3>
+      )}
 
-      <Richtext content={summary} />
+      <div className="content-container">
+        <h3 className="title">
+          <a href={link} className="title-link">
+            {name}
+          </a>
+        </h3>
+
+        <Richtext content={summary} />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-export const fragment = graphql`fragment PartnerPage on WpPage_Acf_Content_Partner {
-  name
-  summary
-  link
-  logo {
-    localFile {
-      childImageSharp {
-        gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
+export const fragment = graphql`
+  fragment PartnerPage on WpPage_Acf_Content_Partner {
+    name
+    summary
+    link
+    logo {
+      altText
+      localFile {
+        childImageSharp {
+          gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
+        }
       }
     }
   }
-}
 
-fragment PartnerAbout on WpAboutPage_Acf_Content_Partner {
-  name
-  summary
-  link
-  logo {
-    localFile {
-      childImageSharp {
-        gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
+  fragment PartnerAbout on WpAboutPage_Acf_Content_Partner {
+    name
+    summary
+    link
+    logo {
+      altText
+      localFile {
+        childImageSharp {
+          gatsbyImageData(width: 800, placeholder: BLURRED, layout: CONSTRAINED)
+        }
       }
     }
   }
-}
 `;
