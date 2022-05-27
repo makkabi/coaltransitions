@@ -11,6 +11,10 @@ export default css`
     width: 100%;
   }
 
+  .test {
+    display: none;
+  }
+
   @media ${mq.tablet} {
     .researcher {
       flex-direction: row;
@@ -19,6 +23,7 @@ export default css`
 
   .image-container {
     width: 35%;
+    border-radius: 50%;
   }
 
   @media ${mq.tablet} {
@@ -81,11 +86,5 @@ export default css`
     p {
       ${mixins.text('regular', 'dekstop')}
     }
-  }
-`;
-
-export const portrait = css.resolve`
-  img {
-    border-radius: 50%;
   }
 `;

@@ -21,12 +21,7 @@ export default (props) => {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(
-                    height: 400
-                    width: 400
-                    placeholder: BLURRED
-                    layout: FIXED
-                  )
+                  gatsbyImageData(height: 200, width: 200, placeholder: BLURRED)
                 }
               }
             }
