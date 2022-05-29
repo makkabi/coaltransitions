@@ -26,12 +26,12 @@ module.exports = {
       options: {
         url: env.WP_ENDPOINT,
 
-        /*         auth: {
+        auth: {
           htaccess: {
             username: env.WP_AUTH_USERNAME,
             password: env.WP_AUTH_PASSWORD,
           },
-        }, */
+        },
 
         schema: {
           timeout: 60000,
