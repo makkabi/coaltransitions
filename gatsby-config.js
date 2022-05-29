@@ -60,7 +60,7 @@ module.exports = {
       },
     },
 
-    'gatsby-plugin-netlify',
+    //  'gatsby-plugin-netlify',
     'gatsby-plugin-styled-jsx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -69,12 +69,12 @@ module.exports = {
     'gatsby-plugin-advanced-sitemap',
   ],
 
-  developMiddleware: (app) => {
+  /*  developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
       createProxyMiddleware({
         target: 'http://localhost:9000',
       })
     );
-  },
+  },*/
 };
