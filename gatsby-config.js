@@ -2,8 +2,6 @@ require('dotenv').config();
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const { env } = process;
-
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://coaltransitions.org',
@@ -24,12 +22,12 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        url: env.WP_ENDPOINT,
+        url: process.env.WP_ENDPOINT,
 
         auth: {
           htaccess: {
-            username: env.WP_AUTH_USERNAME,
-            password: env.WP_AUTH_PASSWORD,
+            username: process.env.WP_AUTH_USERNAME,
+            password: process.env.WP_AUTH_PASSWORD,
           },
         },
 
