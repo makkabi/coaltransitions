@@ -18,14 +18,14 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
     <style jsx>{style}</style>
 
     {blocks &&
-      blocks.map((block) => {
+      blocks.map((block, index) => {
         if (block) {
           const { __typename: type } = block;
 
           // eslint-disable-next-line default-case
           switch (type) {
             case `${typePrefix}Text`:
-              return <Richtext content={block.text} />;
+              return <Richtext content={block.text} key={index} />;
 
             case `${typePrefix}Image`:
               const image = getImage(block?.image?.localFile);
@@ -34,35 +34,43 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
                   altText={block.image.altText}
                   image={image}
                   caption={block?.image?.caption}
+                  key={index}
                 />
               ) : null;
 
             case `${typePrefix}Researchers`:
-              return <ResearchersList />;
+              return <ResearchersList key={index} />;
 
             case `${typePrefix}Researchprojectslist`:
-              return <ResearchProjectsList {...block} />;
+              return <ResearchProjectsList {...block} key={index} />;
 
             case `${typePrefix}Newsletter`:
-              return <Newsletter {...block} />;
+              return <Newsletter {...block} key={index} />;
 
             case `${typePrefix}Logogrid`:
-              return <LogoGrid {...block} />;
+              return <LogoGrid {...block} key={index} />;
 
             case `${typePrefix}Partner`:
-              return <Partner {...block} />;
+              return <Partner {...block} key={index} />;
 
             case `${typePrefix}FeaturedNews`:
               return null;
               /* eslint-disable no-unreachable */
               // eslint-disable-next-line no-case-declarations
               const { news, ...props } = block;
-              return <NewsList nodes={news} title="Recent News" {...props} />;
+              return (
+                <NewsList
+                  nodes={news}
+                  title="Recent News"
+                  {...props}
+                  key={index}
+                />
+              );
             /* eslint-enable no-unreachable */
 
             case `${typePrefix}RelatedPublications`:
               return (
-                <div className="publications-list-container">
+                <div className="publications-list-container" key={index}>
                   <PublicationList {...props} />
                 </div>
               );
