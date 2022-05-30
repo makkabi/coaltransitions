@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 
 import ArrowIcon from '../../../../static/icons/arrow-alt-right.svg';
 import Button from '../../button';
-import Picture from '../../picture';
+
 import style, { titleLink, imageLink, arrowIcon, captionStyle } from './style';
 
 import Stroke1Green from '../../../../static/strokes/stroke-1-green.svg';
