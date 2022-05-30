@@ -9,6 +9,10 @@ export const fragment = graphql`
     items: nodes {
       title
       uri
+      acf {
+        intro
+        hideInSubmenu
+      }
     }
   }
 
@@ -29,16 +33,21 @@ export default ({ items }) => (
     {item.styles}
 
     {items &&
-      items.map(({ title, slug, uri, acf }) => (
-        <li key={`sub-menu-${uri}`}>
-          <Link
-            to={
-              uri || (slug === 'research-hub' ? '/about/' : `/about/${slug}/`)
-            }
-            dangerouslySetInnerHTML={{ __html: acf?.shorttitle || title }}
-            className={item.className}
-          />
-        </li>
-      ))}
+      items.map(({ title, slug, uri, acf }) => {
+        if (acf?.hideInSubmenu) {
+          return null;
+        }
+        return (
+          <li key={`sub-menu-${uri}`}>
+            <Link
+              to={
+                uri || (slug === 'research-hub' ? '/about/' : `/about/${slug}/`)
+              }
+              dangerouslySetInnerHTML={{ __html: acf?.shorttitle || title }}
+              className={item.className}
+            />
+          </li>
+        );
+      })}
   </ul>
 );
