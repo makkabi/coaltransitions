@@ -66,12 +66,7 @@ const createPages = (
       databaseId,
     };
 
-    if (
-      siblings &&
-      siblings.node &&
-      siblings.node.wpChildren &&
-      siblings.node.wpChildren.nodes.length > 0
-    ) {
+    if (siblings?.node?.wpChildren?.nodes?.length > 0) {
       context.siblings = siblings.node.wpChildren.nodes
         .sort(sortByMenuOrder)
         .map(({ databaseId: siblingDatabaseId }) => siblingDatabaseId);
