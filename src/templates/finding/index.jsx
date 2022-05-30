@@ -112,11 +112,7 @@ export const query = graphql`
           altText
           localFile {
             childImageSharp {
-              gatsbyImageData(
-                width: 600
-                placeholder: BLURRED
-                layout: FULL_WIDTH
-              )
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
             }
           }
         }
