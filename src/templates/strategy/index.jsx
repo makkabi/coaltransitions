@@ -28,7 +28,7 @@ const Page = ({
   },
 }) => {
   const image = getImage(featuredImage?.node?.localFile);
-  console.log({ strategyTags });
+
   return (
     <Constraint superwide>
       <Helmet title={title} />
@@ -121,6 +121,20 @@ const Page = ({
                   tags={strategyTags}
                   filterUrl="/tools-resist/strategies?keyword="
                   filterName="strategyTag"
+                />
+              </div>
+            </div>
+          )}
+
+          {actorTags && (
+            <div className="meta-block">
+              <h3 className="meta-block-title">Actors</h3>
+
+              <div>
+                <TagList
+                  tags={actorTags}
+                  filterUrl="/tools-resist/strategies?actor="
+                  filterName="actor"
                 />
               </div>
             </div>
