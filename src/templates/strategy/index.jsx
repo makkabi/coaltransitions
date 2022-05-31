@@ -21,11 +21,14 @@ const Page = ({
     strategy: {
       title,
       featuredImage,
+      actorTags: { nodes: actorTags },
+      strategyTags: { nodes: strategyTags },
       acf: { content, additionalContent, additionalLinks = [] },
     },
   },
 }) => {
   const image = getImage(featuredImage?.node?.localFile);
+  console.log({ strategyTags });
   return (
     <Constraint superwide>
       <Helmet title={title} />
@@ -108,7 +111,21 @@ const Page = ({
           )}
         </div>
 
-        <div className="meta"></div>
+        <div className="meta">
+          {strategyTags && (
+            <div className="meta-block">
+              <h3 className="meta-block-title">Keywords</h3>
+
+              <div>
+                <TagList
+                  tags={strategyTags}
+                  filterUrl="/tools-resist/strategies?keyword="
+                  filterName="strategyTag"
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </article>
     </Constraint>
   );
@@ -128,6 +145,18 @@ export const query = graphql`
               gatsbyImageData(width: 300, placeholder: BLURRED)
             }
           }
+        }
+      }
+      strategyTags {
+        nodes {
+          name
+          slug
+        }
+      }
+      actorTags {
+        nodes {
+          name
+          slug
         }
       }
       acf {

@@ -87,7 +87,12 @@ export default ({
 
         {tags && (
           <div className="tags-container">
-            <TagList onFilter={onFilter} tags={tags} />
+            <TagList
+              onFilter={onFilter}
+              tags={tags}
+              filterUrl="/publications/?keywords="
+              filterName="tags"
+            />
           </div>
         )}
       </div>

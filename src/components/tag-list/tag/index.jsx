@@ -3,13 +3,21 @@ import React from 'react';
 
 import { linkStyle } from './style';
 
-export default ({ to, slug, children, onFilter, ...attributes }) => (
+export default ({
+  to,
+  slug,
+  children,
+  onFilter,
+  filterUrl,
+  filterName,
+  ...attributes
+}) => (
   <Link
-    to={`/publications/?keywords=${slug}`}
+    to={`${filterUrl}${slug}`}
     onClick={(event) => {
       if (onFilter) {
         event.preventDefault();
-        onFilter('tags', [slug]);
+        onFilter(filterName, [slug]);
       }
     }}
     className={linkStyle.className}

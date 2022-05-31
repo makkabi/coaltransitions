@@ -111,7 +111,11 @@ const Page = ({
               <h3 className="meta-block-title">Keywords</h3>
 
               <div>
-                <TagList tags={tags} />
+                <TagList
+                  tags={tags}
+                  filterUrl="/publications/?keywords="
+                  filterName="tags"
+                />
               </div>
             </div>
           )}

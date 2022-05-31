@@ -3,7 +3,13 @@ import React from 'react';
 import style from './style';
 import Tag from './tag';
 
-export default ({ tags, trim = false, onFilter = false }) => (
+export default ({
+  tags,
+  trim = false,
+  onFilter = false,
+  filterUrl,
+  filterName,
+}) => (
   <ul>
     <style jsx>{style}</style>
 
@@ -16,7 +22,12 @@ export default ({ tags, trim = false, onFilter = false }) => (
 
         return (
           <li key={`tag-${slug}`}>
-            <Tag slug={slug} onFilter={onFilter}>
+            <Tag
+              slug={slug}
+              onFilter={onFilter}
+              filterUrl={filterUrl}
+              filterName={filterName}
+            >
               {name}
             </Tag>
           </li>
