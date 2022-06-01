@@ -4,7 +4,6 @@ import { graphql } from 'gatsby';
 
 import AuthorList from '../../author-list';
 import style, { linkTitle, linkPicture } from './style';
-import Picture from '../../picture';
 import TagList from '../../tag-list';
 import Figure from '../../figure';
 import { captionStyle } from '../../findings-list/finding/style';

@@ -7,7 +7,6 @@ import Constraint from '../../../components/constraint';
 import {
   extractPublicationsAuthors,
   extractPublicationsTags,
-  extractPublicationYearExtremes,
   filterPublications,
 } from '../../../lib/publication';
 import FilterLoading from '../../../components/filter/loading';
@@ -178,7 +177,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    publications: allWpPublication(sort: { fields: acf___year, order: DESC }) {
+    publications: allWpStrategy {
       nodes {
         ...publicationListItem
       }
