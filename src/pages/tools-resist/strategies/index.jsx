@@ -11,6 +11,7 @@ import { getFilterFromUrl, setUrlForFilter } from '../../../lib/url';
 import { sortBySecondName } from '../../../lib/sort-by-second-name';
 import withLayout from '../../../components/with-layout';
 import StrategiesList from '../../../components/strategies-list';
+import { extractStrategyTerms, filterStrategies } from '../../../lib/strategy';
 
 const Filter = React.lazy(() => import('../../../components/filter'));
 
@@ -19,8 +20,8 @@ const Page = ({
     strategies: { nodes: initialStrategies },
   },
 }) => {
-  const tags = []; // extractPublicationsTags(initialStrategies);
-  const actors = []; // extractPublicationsTags(initialStrategies);
+  const tags = extractStrategyTerms(initialStrategies, 'strategyTags');
+  const actors = extractStrategyTerms(initialStrategies, 'actorTags');
 
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
@@ -41,12 +42,12 @@ const Page = ({
         });
       }
 
-      /*      setStrategies(
+      setStrategies(
         filterStrategies(initialStrategies, {
           actors: filter.actors,
           tags: filter.tags,
         })
-      );*/
+      );
 
       if (count > 0) {
         setUrlForFilter('actors', filter.actors);
