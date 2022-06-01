@@ -4,65 +4,59 @@ import React, { useState, useEffect, Suspense } from 'react';
 
 import Button from '../../../components/button';
 import Constraint from '../../../components/constraint';
-import {
-  extractPublicationsAuthors,
-  extractPublicationsTags,
-  filterPublications,
-} from '../../../lib/publication';
 import FilterLoading from '../../../components/filter/loading';
 import FilterButton from '../../../components/filter/button';
-import PublicationsList from '../../../components/publication-list';
 import Select from '../../../components/select';
 import { getFilterFromUrl, setUrlForFilter } from '../../../lib/url';
 import { sortBySecondName } from '../../../lib/sort-by-second-name';
 import withLayout from '../../../components/with-layout';
+import StrategiesList from '../../../components/strategies-list';
 
 const Filter = React.lazy(() => import('../../../components/filter'));
 
 const Page = ({
   data: {
-    publications: { nodes: initialPublications },
+    strategies: { nodes: initialStrategies },
   },
 }) => {
-  const tags = extractPublicationsTags(initialPublications);
-
-  const authors = extractPublicationsAuthors(initialPublications);
+  const tags = []; // extractPublicationsTags(initialStrategies);
+  const actors = []; // extractPublicationsTags(initialStrategies);
 
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
-    authors: [],
+    actors: [],
     tags: [],
   });
 
   const [count, setCount] = useState(0);
   const [showFilter, setShowFilter] = useState(false);
-  const [publications, setPublications] = useState(initialPublications);
+  const [strategies, setStrategies] = useState(initialStrategies);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (count === 0) {
         setFilter({
-          authors: getFilterFromUrl('authors') || [],
+          actors: getFilterFromUrl('actors') || [],
           tags: getFilterFromUrl('keywords') || [],
         });
       }
 
-      setPublications(
-        filterPublications(initialPublications, {
-          authors: filter.authors,
+      /*      setStrategies(
+        filterStrategies(initialStrategies, {
+          actors: filter.actors,
           tags: filter.tags,
         })
-      );
+      );*/
 
       if (count > 0) {
-        setUrlForFilter('authors', filter.authors);
+        setUrlForFilter('actors', filter.actors);
         setUrlForFilter('keywords', filter.tags);
       }
     }
 
     // Show the filter interface if at least one is set
     setShowFilter(
-      (filter.authors && filter.authors.length > 0) ||
+      (filter.actors && filter.actors.length > 0) ||
         (filter.tags && filter.tags.length > 0)
     );
     setCount(count + 1);
@@ -84,16 +78,16 @@ const Page = ({
                 [
                   <Select
                     placeholder="Authors"
-                    name="author"
-                    key="authors"
-                    options={authors.sort((a, b) =>
+                    name="actor"
+                    key="actors"
+                    options={actors.sort((a, b) =>
                       sortBySecondName({ title: a.label }, { title: b.label })
                     )}
                     value={
-                      filter.authors &&
-                      filter.authors.map((author) => ({
-                        value: author,
-                        label: author,
+                      filter.actors &&
+                      filter.actors.map((actor) => ({
+                        value: actor,
+                        label: actor,
                       }))
                     }
                     onChange={(selected) => {
@@ -102,7 +96,7 @@ const Page = ({
 
                       setFilter((state) => ({
                         ...state,
-                        authors: updatedAuthors,
+                        actors: updatedAuthors,
                       }));
                     }}
                     isMulti
@@ -144,7 +138,7 @@ const Page = ({
                       event.preventDefault();
                       setFilter((state) => ({
                         ...state,
-                        authors: [],
+                        actors: [],
                         tags: [],
                       }));
                     }}
@@ -157,10 +151,10 @@ const Page = ({
           </Suspense>
         )}
 
-        {publications && (
-          <PublicationsList
-            title={`Publications (${publications.length})`}
-            publications={publications}
+        {strategies && (
+          <StrategiesList
+            title={`Strategies (${strategies.length})`}
+            strategies={strategies}
             onFilter={(filterKey, filterValue) => {
               setFilter({
                 [filterKey]: filterValue,
@@ -177,9 +171,9 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    publications: allWpStrategy {
+    strategies: allWpStrategy {
       nodes {
-        ...publicationListItem
+        ...strategyListItem
       }
     }
   }
