@@ -31,37 +31,8 @@ export default css`
     }
   }
 
-  .year {
-    ${mixins.text('small', 'phone')}
-
-    align-self: flex-start;
-    background-color: ${colors.greenBrand};
-    color: white;
-    display: inline-block;
-    font-weight: 700;
-    letter-spacing: 0.05rem;
-    margin-bottom: 0;
-    margin-top: 0;
-    padding: 0.15rem 0.5rem;
-    text-align: right;
-    width: 100%;
-  }
-
-  @media ${mq.tablet} {
-    .year {
-      ${mixins.text('small', 'tablet')}
-
-      font-weight: 700;
-      position: absolute;
-      text-align: left;
-      transform: translateX(-100%);
-      width: auto;
-    }
-  }
-
   .cover-image-container {
     align-self: flex-start;
-    background-color: ${colors.greyLight};
     border: 1px solid ${colors.greyLight};
     font-size: 0;
     flex: 0 0 auto;
@@ -70,10 +41,13 @@ export default css`
     width: 25%;
   }
 
+  .cover-image-container:empty {
+    border-color: transparent;
+  }
+
   @media ${mq.tablet} {
     .cover-image-container {
       margin-right: 1.5rem;
-      min-height: 9rem;
       width: 20%;
     }
   }
