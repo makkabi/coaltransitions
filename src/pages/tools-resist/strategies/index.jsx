@@ -78,33 +78,6 @@ const Page = ({
               rows={[
                 [
                   <Select
-                    placeholder="Authors"
-                    name="actor"
-                    key="actors"
-                    options={actors.sort((a, b) =>
-                      sortBySecondName({ title: a.label }, { title: b.label })
-                    )}
-                    value={
-                      filter.actors &&
-                      filter.actors.map((actor) => ({
-                        value: actor,
-                        label: actor,
-                      }))
-                    }
-                    onChange={(selected) => {
-                      const updatedAuthors =
-                        selected && selected.map(({ value }) => value);
-
-                      setFilter((state) => ({
-                        ...state,
-                        actors: updatedAuthors,
-                      }));
-                    }}
-                    isMulti
-                    isSearchable
-                  />,
-
-                  <Select
                     placeholder="Keywords"
                     name="tags"
                     key="tags"
@@ -125,6 +98,33 @@ const Page = ({
                       setFilter((state) => ({
                         ...state,
                         tags: selectedTags,
+                      }));
+                    }}
+                    isMulti
+                    isSearchable
+                  />,
+
+                  <Select
+                    placeholder="Actors"
+                    name="actor"
+                    key="actors"
+                    options={actors.sort((a, b) =>
+                      sortBySecondName({ title: a.label }, { title: b.label })
+                    )}
+                    value={
+                      filter.actors &&
+                      filter.actors.map((actor) => ({
+                        value: actor,
+                        label: actor,
+                      }))
+                    }
+                    onChange={(selected) => {
+                      const updatedAuthors =
+                        selected && selected.map(({ value }) => value);
+
+                      setFilter((state) => ({
+                        ...state,
+                        actors: updatedAuthors,
                       }));
                     }}
                     isMulti
