@@ -5,7 +5,7 @@ import React from 'react';
 import { colors, mixins, mq } from '../../../token';
 
 export default css`
-  .publication {
+  .strategy {
     display: flex;
     flex-direction: row;
     padding-bottom: 1.5rem;
@@ -14,7 +14,7 @@ export default css`
   }
 
   @media ${mq.tablet} {
-    .publication {
+    .strategy {
       padding-bottom: 1.75rem;
       padding-top: 1.75rem;
     }

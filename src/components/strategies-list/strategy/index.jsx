@@ -48,7 +48,7 @@ export default ({
   const image = getImage(featuredImage?.node?.localFile);
 
   return (
-    <div className="publication">
+    <div className="strategy">
       <style jsx>{style}</style>
       {linkTitle.styles}
       {linkPicture.styles}

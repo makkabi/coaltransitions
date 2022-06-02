@@ -3,20 +3,20 @@ import css from 'styled-jsx/css';
 import { colors, mixins, mq } from '../../token';
 
 export default css`
-  .publications-container {
+  .strategies-container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
   @media ${mq.tablet} {
-    .publications-container {
+    .strategies-container {
       padding-left: 5rem;
       padding-right: 0;
     }
   }
 
   @media ${mq.desktop} {
-    .publications-container {
+    .strategies-container {
       padding-left: 7.5rem;
     }
   }

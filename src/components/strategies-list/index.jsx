@@ -5,7 +5,7 @@ import Strategy from './strategy';
 import style from './style';
 
 export default ({ title, strategies = [], onFilter, showAllLink = false }) => (
-  <div className="publications-container">
+  <div className="strategies-container">
     <style jsx>{style}</style>
 
     {title && (
