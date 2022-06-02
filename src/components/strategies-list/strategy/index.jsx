@@ -79,7 +79,7 @@ export default ({
             <TagList
               tags={strategyTags}
               filterUrl="/tools-resist/strategies?keyword="
-              filterName="strategyTag"
+              filterName="tags"
               onFilter={onFilter}
             />
           </div>
@@ -90,7 +90,7 @@ export default ({
             <TagList
               tags={actorTags}
               filterUrl="/tools-resist/strategies?actor="
-              filterName="actor"
+              filterName="actors"
               onFilter={onFilter}
             />
           </div>
