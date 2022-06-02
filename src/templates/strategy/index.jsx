@@ -174,10 +174,6 @@ export const query = graphql`
         }
       }
       acf {
-        additionalLinks {
-          link
-          linktext
-        }
         content {
           __typename
           ... on WpStrategy_Acf_Content_Text {
