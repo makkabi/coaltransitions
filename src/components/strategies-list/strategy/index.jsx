@@ -2,7 +2,7 @@ import Link from 'gatsby-link';
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import style, { linkTitle, linkPicture } from './style';
+import style, { linkTitle } from './style';
 import TagList from '../../tag-list';
 import Figure from '../../figure';
 import { captionStyle } from '../../findings-list/finding/style';
@@ -51,11 +51,10 @@ export default ({
     <div className="strategy">
       <style jsx>{style}</style>
       {linkTitle.styles}
-      {linkPicture.styles}
 
       <div className="cover-image-container">
         {featuredImage?.node?.localFile && (
-          <Link to={url} className={linkPicture.className} rel="nofollow">
+          <Link to={url} rel="nofollow">
             {image && (
               <Figure
                 altText={featuredImage.altText}

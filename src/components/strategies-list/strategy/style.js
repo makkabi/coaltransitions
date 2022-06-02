@@ -109,10 +109,3 @@ export const linkTitle = css.resolve`
     text-decoration: underline;
   }
 `;
-
-export const linkPicture = css.resolve`
-  a {
-    font-size: 0;
-    line-height: 1;
-  }
-`;
