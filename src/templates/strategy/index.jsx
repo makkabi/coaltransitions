@@ -1,8 +1,7 @@
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import AuthorList from '../../components/author-list';
 import Button from '../../components/button';
 import Constraint from '../../components/constraint';
 import DownloadIcon from '../../../static/icons/download.svg';
@@ -14,7 +13,6 @@ import withLayout from '../../components/with-layout';
 import { getImage } from 'gatsby-plugin-image';
 import Figure from '../../components/figure';
 import { captionStyle } from '../../components/findings-list/finding/style';
-import Picture from '../../components/picture';
 
 const Page = ({
   data: {
@@ -23,7 +21,7 @@ const Page = ({
       featuredImage,
       actorTags: { nodes: actorTags },
       strategyTags: { nodes: strategyTags },
-      acf: { content, additionalContent, additionalLinks = [] },
+      acf: { subtitle, content, additionalContent, relatedStrategies },
     },
   },
 }) => {
@@ -35,28 +33,44 @@ const Page = ({
 
       <article className="strategy">
         <style jsx>{style}</style>
+        <div className="left-column">
+          <header className="header">
+            <h1 className="title">
+              <span dangerouslySetInnerHTML={{ __html: title }} />
+            </h1>
 
-        <header className="header">
-          <h1 className="title">
-            <span dangerouslySetInnerHTML={{ __html: title }} />
-          </h1>
-
-          <div className="title-meta-container"></div>
-
-          {featuredImage?.node?.localFile && (
-            <div className="cover-image-container">
-              {image && (
-                <Figure
-                  altText={featuredImage.altText}
-                  image={image}
-                  caption={featuredImage.caption}
-                  captionClassName={captionStyle.className}
-                />
-              )}
+            <div className="title-meta-container">
+              {subtitle && <p className="subtitle">{subtitle}</p>}
             </div>
-          )}
-        </header>
 
+            {featuredImage?.node?.localFile && (
+              <div className="cover-image-container">
+                {image && (
+                  <Figure
+                    altText={featuredImage.altText}
+                    image={image}
+                    caption={featuredImage.caption}
+                    captionClassName={captionStyle.className}
+                  />
+                )}
+              </div>
+            )}
+          </header>
+          {relatedStrategies?.length && (
+            <section>
+              <h3 className="meta-block-title">Related Strategies</h3>
+              <ul>
+                {relatedStrategies
+                  .filter((item) => item?.strategy)
+                  .map(({ strategy: { uri, title } }) => (
+                    <li key={uri}>
+                      <a href={uri}>{title}</a>
+                    </li>
+                  ))}
+              </ul>
+            </section>
+          )}
+        </div>
         <div className="body">
           {content && (
             <div className="description">
@@ -174,6 +188,7 @@ export const query = graphql`
         }
       }
       acf {
+        subtitle
         content {
           __typename
           ... on WpStrategy_Acf_Content_Text {
@@ -213,6 +228,14 @@ export const query = graphql`
                   )
                 }
               }
+            }
+          }
+        }
+        relatedStrategies {
+          strategy {
+            ... on WpStrategy {
+              uri
+              title
             }
           }
         }
