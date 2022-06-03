@@ -118,6 +118,15 @@ const Page = ({
             </div>
           )}
 
+          {themeGeneralSettings.strategiesInfobox && (
+            <aside
+              className="infobox"
+              dangerouslySetInnerHTML={{
+                __html: themeGeneralSettings.strategiesInfobox,
+              }}
+            />
+          )}
+
           {exampleStrategies?.length && (
             <section className="related-strategies related-strategies--example">
               <h2>Regional Example Strategies</h2>

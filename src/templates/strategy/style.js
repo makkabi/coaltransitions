@@ -111,6 +111,12 @@ export default css`
     ${mixins.text('medium', 'desktop')}
   }
 
+  .infobox {
+    border-color: ${colors.greyLight};
+    border-style: solid;
+    border-width: 2px 0;
+  }
+
   .meta {
     margin-top: 2.5rem;
   }
