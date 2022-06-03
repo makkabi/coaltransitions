@@ -27,6 +27,7 @@ const Page = ({
         additionalContent,
         relatedStrategies,
         exampleStrategies,
+        actions,
       },
     },
   },
@@ -146,7 +147,7 @@ const Page = ({
 
         <div className="meta">
           {strategyTags && (
-            <div className="meta-block">
+            <section className="meta-block">
               <h2 className="meta-block-title">Keywords</h2>
 
               <div>
@@ -156,11 +157,11 @@ const Page = ({
                   filterName="strategyTag"
                 />
               </div>
-            </div>
+            </section>
           )}
 
           {actorTags && (
-            <div className="meta-block">
+            <section className="meta-block">
               <h2 className="meta-block-title">Actors</h2>
 
               <div>
@@ -170,7 +171,14 @@ const Page = ({
                   filterName="actor"
                 />
               </div>
-            </div>
+            </section>
+          )}
+
+          {actions && (
+            <section className="meta-block">
+              <h2 className="meta-block-title">Actions</h2>
+              <div dangerouslySetInnerHTML={{ __html: actions }} />
+            </section>
           )}
         </div>
       </article>
@@ -268,6 +276,7 @@ export const query = graphql`
             }
           }
         }
+        actions
       }
     }
   }
