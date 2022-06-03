@@ -13,6 +13,7 @@ import withLayout from '../../components/with-layout';
 import { getImage } from 'gatsby-plugin-image';
 import Figure from '../../components/figure';
 import { captionStyle } from '../../components/findings-list/finding/style';
+import Newsletter from '../../components/Newsletter';
 
 const Page = ({
   data: {
@@ -94,10 +95,10 @@ const Page = ({
         <div className="body">
           {content && (
             <div className="description">
-              {content.map(({ __typename, ...block }) => {
+              {content.map(({ __typename, ...block }, index) => {
                 switch (__typename) {
                   case 'WpStrategy_Acf_Content_Text':
-                    return <Richtext content={block.text} />;
+                    return <Richtext content={block.text} key={index} />;
 
                   case 'WpStrategy_Acf_Content_Image':
                     const image = getImage(block?.image?.localFile);
@@ -108,11 +109,15 @@ const Page = ({
                         image={image}
                         caption={block.image.caption}
                         captionClassName={captionStyle.className}
+                        key={index}
                       />
                     ) : null;
 
+                  case `WpStrategy_Acf_Content_Newsletter`:
+                    return <Newsletter {...block} key={index} />;
+
                   default:
-                    return <p>Block not implemented</p>;
+                    return <p key={index}>Block not implemented</p>;
                 }
               })}
             </div>
@@ -144,10 +149,10 @@ const Page = ({
 
           {additionalContent && (
             <div className="description">
-              {additionalContent.map(({ __typename, ...block }) => {
+              {additionalContent.map(({ __typename, ...block }, index) => {
                 switch (__typename) {
                   case 'WpStrategy_Acf_AdditionalContent_Text':
-                    return <Richtext content={block.text} />;
+                    return <Richtext content={block.text} key={index} />;
 
                   case 'WpStrategy_Acf_AdditionalContent_Image':
                     const image = getImage(block?.image?.localFile);
@@ -158,11 +163,15 @@ const Page = ({
                         image={image}
                         caption={block.image.caption}
                         captionClassName={captionStyle.className}
+                        key={index}
                       />
                     ) : null;
 
+                  case `WpStrategy_Acf_AdditionalContent_Newsletter`:
+                    return <Newsletter {...block} key={index} />;
+
                   default:
-                    return <p>Block not implemented</p>;
+                    return <p key={index}>Block not implemented</p>;
                 }
               })}
             </div>
@@ -260,6 +269,12 @@ export const query = graphql`
               }
             }
           }
+          ... on WpStrategy_Acf_Content_Newsletter {
+            title
+            intro
+            link
+            linklabel
+          }
         }
         additionalContent {
           __typename
@@ -280,6 +295,12 @@ export const query = graphql`
                 }
               }
             }
+          }
+          ... on WpStrategy_Acf_AdditionalContent_Newsletter {
+            title
+            intro
+            link
+            linklabel
           }
         }
 
