@@ -190,3 +190,9 @@ export const buttonIcon = css.resolve`
     width: 1.15rem;
   }
 `;
+
+export const newsletter = css.global`
+  .body .newsletter.newsletter {
+    margin: 4rem 0;
+  }
+`;

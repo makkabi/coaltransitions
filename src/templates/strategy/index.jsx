@@ -7,7 +7,7 @@ import Constraint from '../../components/constraint';
 import DownloadIcon from '../../../static/icons/download.svg';
 
 import Richtext from '../../components/richtext';
-import style, { buttonIcon } from './style';
+import style, { buttonIcon, newsletter } from './style';
 import TagList from '../../components/tag-list';
 import withLayout from '../../components/with-layout';
 import { getImage } from 'gatsby-plugin-image';
@@ -44,6 +44,7 @@ const Page = ({
 
       <article className="strategy">
         <style jsx>{style}</style>
+        <style jsx>{newsletter}</style>
         <div className="left-column">
           <header className="header">
             <h1 className="title">
