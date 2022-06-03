@@ -21,7 +21,13 @@ const Page = ({
       featuredImage,
       actorTags: { nodes: actorTags },
       strategyTags: { nodes: strategyTags },
-      acf: { subtitle, content, additionalContent, relatedStrategies },
+      acf: {
+        subtitle,
+        content,
+        additionalContent,
+        relatedStrategies,
+        exampleStrategies,
+      },
     },
   },
 }) => {
@@ -55,7 +61,7 @@ const Page = ({
             )}
           </header>
           {relatedStrategies?.length && (
-            <section className="related-strategies">
+            <section className="related-strategies related-strategies--related">
               <h2 className="meta-block-title">Related Strategies</h2>
               <ul>
                 {relatedStrategies
@@ -94,6 +100,21 @@ const Page = ({
                 }
               })}
             </div>
+          )}
+
+          {exampleStrategies?.length && (
+            <section className="related-strategies related-strategies--example">
+              <h2>Regional Example Strategies</h2>
+              <ul>
+                {exampleStrategies
+                  .filter((item) => item?.strategy)
+                  .map(({ strategy: { uri, title } }) => (
+                    <li key={uri}>
+                      <a href={uri}>{title}</a>
+                    </li>
+                  ))}
+              </ul>
+            </section>
           )}
 
           {additionalContent && (
@@ -229,7 +250,17 @@ export const query = graphql`
             }
           }
         }
+
         relatedStrategies {
+          strategy {
+            ... on WpStrategy {
+              uri
+              title
+            }
+          }
+        }
+
+        exampleStrategies {
           strategy {
             ... on WpStrategy {
               uri

@@ -87,6 +87,10 @@ export default css`
     margin-bottom: 1.5rem;
   }
 
+  .related-strategies {
+    margin: 2rem 0;
+  }
+
   .related-strategies ul {
     margin: 1rem 0;
     list-style: none;
@@ -102,6 +106,10 @@ export default css`
     .related-strategies a {
       ${mixins.text('medium', 'desktop')}
     }
+  }
+
+  .body h2 {
+    ${mixins.text('medium', 'desktop')}
   }
 
   .meta {
