@@ -6,16 +6,14 @@ import { colors, mixins, mq } from '../../token';
 
 export default css`
   .strategy {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     padding-left: 1rem;
     padding-right: 1rem;
+    display: grid;
+    gap: 1.5rem;
   }
 
   @media ${mq.tablet} {
     .strategy {
-      flex-direction: row;
       margin-top: 3rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
@@ -24,45 +22,19 @@ export default css`
 
   @media ${mq.desktop} {
     .strategy {
-      flex-wrap: nowrap;
+      grid-template-columns: 20% 1fr 20%;
     }
   }
 
-  .header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
   @media ${mq.tablet} {
-    .header {
-      flex-direction: column;
+    .left-column {
       padding-left: 1.5rem;
     }
   }
 
   @media ${mq.desktop} {
-    .header {
+    .left-column {
       padding-left: 2.5rem;
-    }
-  }
-
-  .cover-image-container {
-    border: 1px solid ${colors.greyLight};
-    flex: 0 1 auto;
-    font-size: 0;
-    max-width: 35%;
-    order: 2;
-  }
-
-  @media ${mq.tablet} {
-    .cover-image-container {
-      justify-self: flex-end;
-      margin-left: auto;
-      margin-right: 0;
-      margin-top: 0;
-      max-width: 50%;
-      order: 3;
     }
   }
 
@@ -81,7 +53,6 @@ export default css`
 
       margin-bottom: 1.5rem;
       order: 1;
-      text-align: right;
     }
   }
 
@@ -89,25 +60,22 @@ export default css`
     .title {
       ${mixins.text('extra-big', 'desktop')}
     }
-  }
+    .header {
+    }
 
-  .title-meta-container {
-    order: 3;
-    padding-left: 1.5rem;
-    width: 40%;
-  }
+    .left-column {
+      display: grid;
+      justify-items: end;
+    }
 
-  @media ${mq.tablet} {
-    .title-meta-container {
-      order: 2;
-      width: 100%;
+    .left-column * {
+      text-align: right;
     }
   }
 
   .subtitle {
-    ${mixins.text('small')}
-
     color: ${colors.blueBrand};
+    ${mixins.text('medium', 'desktop')}
     display: block;
     font-weight: 400;
     margin-bottom: 0;
@@ -115,103 +83,19 @@ export default css`
     order: 2;
   }
 
-  @media ${mq.tablet} {
-    .subtitle {
-      ${mixins.text('medium', 'tablet')}
-
-      font-weight: 400;
-      text-align: right;
-    }
-  }
-
-  @media ${mq.desktop} {
-    .subtitle {
-      ${mixins.text('medium', 'desktop')}
-
-      font-weight: 400;
-    }
-  }
-
-  .languages-container {
-    display: flex;
-  }
-
-  @media ${mq.tablet} {
-    .languages-container {
-      justify-content: flex-end;
-      margin-bottom: 4rem;
-      margin-top: 2rem;
-    }
-  }
-
   .header {
     margin-bottom: 1.5rem;
-  }
-
-  @media ${mq.tablet} {
-    .header {
-      flex: 0 0 40%;
-    }
-  }
-
-  .body {
-    flex: 1 0 100%;
-  }
-
-  @media ${mq.tablet} {
-    .body {
-      flex-basis: 60%;
-      padding-right: 1.5rem;
-    }
-  }
-
-  @media ${mq.desktop} {
-    .body {
-      flex-basis: 40%;
-      padding-right: 0;
-    }
-  }
-
-  .meta {
-    flex: 0 0 100%;
-  }
-
-  @media ${mq.tablet} {
-    .meta {
-      flex-basis: 40%;
-      margin-left: 40%;
-    }
-  }
-
-  @media ${mq.desktop} {
-    .meta {
-      flex-basis: 20%;
-      margin-left: 0;
-      padding-right: 0.5rem;
-    }
-  }
-
-  @media ${mq.tablet} {
-    .body,
-    .meta {
-      padding-left: 1.5rem;
-    }
   }
 
   .meta {
     margin-top: 2.5rem;
   }
 
-  @media ${mq.tablet} {
-    .meta {
-      align-self: flex-start;
-    }
-  }
-
   @media ${mq.desktop} {
     .meta {
+      align-self: start;
       top: 1rem;
-      margin-top: 25%;
+      margin-top: 10rem;
       position: sticky;
     }
   }

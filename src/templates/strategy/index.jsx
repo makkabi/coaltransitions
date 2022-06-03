@@ -39,9 +39,7 @@ const Page = ({
               <span dangerouslySetInnerHTML={{ __html: title }} />
             </h1>
 
-            <div className="title-meta-container">
-              {subtitle && <p className="subtitle">{subtitle}</p>}
-            </div>
+            {subtitle && <p className="subtitle">{subtitle}</p>}
 
             {featuredImage?.node?.localFile && (
               <div className="cover-image-container">
