@@ -56,7 +56,7 @@ const Page = ({
           </header>
           {relatedStrategies?.length && (
             <section>
-              <h3 className="meta-block-title">Related Strategies</h3>
+              <h2 className="meta-block-title">Related Strategies</h2>
               <ul>
                 {relatedStrategies
                   .filter((item) => item?.strategy)
@@ -126,7 +126,7 @@ const Page = ({
         <div className="meta">
           {strategyTags && (
             <div className="meta-block">
-              <h3 className="meta-block-title">Keywords</h3>
+              <h2 className="meta-block-title">Keywords</h2>
 
               <div>
                 <TagList
@@ -140,7 +140,7 @@ const Page = ({
 
           {actorTags && (
             <div className="meta-block">
-              <h3 className="meta-block-title">Actors</h3>
+              <h2 className="meta-block-title">Actors</h2>
 
               <div>
                 <TagList
