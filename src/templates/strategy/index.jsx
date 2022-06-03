@@ -30,6 +30,9 @@ const Page = ({
         actions,
       },
     },
+    wp: {
+      themeGeneralSettings: { themeGeneralSettings },
+    },
   },
 }) => {
   const image = getImage(featuredImage?.node?.localFile);
@@ -61,6 +64,18 @@ const Page = ({
               </div>
             )}
           </header>
+
+          {themeGeneralSettings.spreadsheetUrl && (
+            <Button
+              to={themeGeneralSettings.spreadsheetUrl}
+              download
+              theme="blue"
+            >
+              Download Spreadsheet&nbsp;
+              <DownloadIcon className={buttonIcon.className} />
+            </Button>
+          )}
+
           {relatedStrategies?.length && (
             <section className="related-strategies related-strategies--related">
               <h2 className="meta-block-title">Related Strategies</h2>
@@ -277,6 +292,14 @@ export const query = graphql`
           }
         }
         actions
+      }
+    }
+    wp {
+      themeGeneralSettings {
+        themeGeneralSettings {
+          spreadsheetUrl
+          strategiesInfobox
+        }
       }
     }
   }

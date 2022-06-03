@@ -60,12 +60,11 @@ export default css`
     .title {
       ${mixins.text('extra-big', 'desktop')}
     }
-    .header {
-    }
 
     .left-column {
       display: grid;
       justify-items: end;
+      align-self: start;
     }
 
     .left-column * {
@@ -79,7 +78,7 @@ export default css`
     display: block;
     font-weight: 400;
     margin-bottom: 0;
-    margin-top: 0;
+    margin: 0 0 1rem;
     order: 2;
   }
 
