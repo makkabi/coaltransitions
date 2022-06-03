@@ -55,7 +55,7 @@ const Page = ({
             )}
           </header>
           {relatedStrategies?.length && (
-            <section>
+            <section className="related-strategies">
               <h2 className="meta-block-title">Related Strategies</h2>
               <ul>
                 {relatedStrategies

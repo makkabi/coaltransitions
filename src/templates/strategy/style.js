@@ -87,6 +87,23 @@ export default css`
     margin-bottom: 1.5rem;
   }
 
+  .related-strategies ul {
+    margin: 1rem 0;
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-strategies a {
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  @media ${mq.desktop} {
+    .related-strategies a {
+      ${mixins.text('medium', 'desktop')}
+    }
+  }
+
   .meta {
     margin-top: 2.5rem;
   }
