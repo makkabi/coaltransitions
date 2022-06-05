@@ -22,7 +22,7 @@ export default css`
 
   @media ${mq.desktop} {
     .strategy {
-      grid-template-columns: 20% 1fr 20%;
+      grid-template-columns: max(17rem, 25%) 1fr max(17rem, 25%);
     }
   }
 
