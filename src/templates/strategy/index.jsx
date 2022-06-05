@@ -14,6 +14,7 @@ import { getImage } from 'gatsby-plugin-image';
 import Figure from '../../components/figure';
 import { captionStyle } from '../../components/findings-list/finding/style';
 import Newsletter from '../../components/Newsletter';
+import Partner from '../../components/partner';
 
 const Page = ({
   data: {
@@ -114,8 +115,11 @@ const Page = ({
                       />
                     ) : null;
 
-                  case `WpStrategy_Acf_Content_Newsletter`:
+                  case 'WpStrategy_Acf_Content_Newsletter':
                     return <Newsletter {...block} key={index} />;
+
+                  case 'WpStrategy_Acf_Content_Partner':
+                    return <Partner {...block} key={index} />;
 
                   default:
                     return <p key={index}>Block not implemented</p>;
@@ -168,8 +172,11 @@ const Page = ({
                       />
                     ) : null;
 
-                  case `WpStrategy_Acf_AdditionalContent_Newsletter`:
+                  case 'WpStrategy_Acf_AdditionalContent_Newsletter':
                     return <Newsletter {...block} key={index} />;
+
+                  case 'WpStrategy_Acf_AdditionalContent_Partner':
+                    return <Partner {...block} key={index} />;
 
                   default:
                     return <p key={index}>Block not implemented</p>;
