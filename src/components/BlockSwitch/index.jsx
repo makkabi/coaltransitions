@@ -12,6 +12,7 @@ import Richtext from '../richtext';
 import style from './style';
 import Figure from '../figure';
 import { getImage } from 'gatsby-plugin-image';
+import FindingsTeaser from '../findings-teaser';
 
 const BlockSwitch = ({ blocks, typePrefix }) => (
   <div className="block-content">
@@ -74,6 +75,9 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
                   <PublicationList {...props} />
                 </div>
               );
+
+            case 'WpPage_Acf_Content_Findings':
+              return <FindingsTeaser {...block} />;
           }
         }
 
