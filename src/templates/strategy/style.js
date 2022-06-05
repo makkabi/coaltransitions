@@ -185,9 +185,9 @@ export default css`
 
 export const buttonIcon = css.resolve`
   svg {
-    height: 1.15rem;
     margin-left: 1rem;
-    width: 1.15rem;
+    flex: 0 0 1.5rem;
+    width: 1.5rem;
   }
 `;
 

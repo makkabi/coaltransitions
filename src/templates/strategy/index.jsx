@@ -38,7 +38,7 @@ const Page = ({
   },
 }) => {
   const image = getImage(featuredImage?.node?.localFile);
-
+  console.log({ buttonIcon });
   return (
     <Constraint superwide>
       <Helmet title={title} />
@@ -46,6 +46,7 @@ const Page = ({
       <article className="strategy">
         <style jsx>{style}</style>
         <style jsx>{newsletter}</style>
+        {buttonIcon.styles}
         <div className="left-column">
           <header className="header">
             <h1 className="title">
