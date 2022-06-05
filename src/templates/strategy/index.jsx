@@ -303,6 +303,24 @@ export const query = graphql`
             link
             linklabel
           }
+
+          ... on WpStrategy_Acf_AdditionalContent_Partner {
+            name
+            summary
+            link
+            logo {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 800
+                    placeholder: BLURRED
+                    layout: CONSTRAINED
+                  )
+                }
+              }
+            }
+          }
         }
 
         relatedStrategies {
