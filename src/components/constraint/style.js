@@ -42,4 +42,8 @@ export default css`
   .constraint--superwide {
     max-width: 80rem;
   }
+
+  .constraint--full-width {
+    max-width: 100%;
+  }
 `;

@@ -8,14 +8,16 @@ export default ({
   wide = false,
   superwide = false,
   topLevel = false,
+  fullWidth = false,
   ...attrs
 }) => (
   <div
     className={classnames(
       'constraint',
-      { 'constraint--wide': wide },
-      { 'constraint--superwide': superwide },
-      { 'constraint--toplevel': topLevel }
+      { 'constraint--wide': wide && !fullWidth },
+      { 'constraint--superwide': superwide && !fullWidth },
+      { 'constraint--toplevel': topLevel && !fullWidth },
+      { 'constraint--full-width': fullWidth }
     )}
     {...attrs}
   >
