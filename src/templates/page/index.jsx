@@ -18,7 +18,7 @@ const Page = ({
     page: {
       title,
       featuredImage,
-      acf: { intro, content },
+      acf: { intro, content, fullWidth = false },
     },
   },
 }) => {
@@ -33,7 +33,7 @@ const Page = ({
       <SubMenu {...subMenuItems} />
 
       <article>
-        <Constraint topLevel>
+        <Constraint topLevel fullWidth={fullWidth}>
           {image && (
             <Figure
               altText={featuredImage.altText}
@@ -80,6 +80,7 @@ export const query = graphql`
       }
       acf {
         intro
+        fullWidth
         content {
           __typename
           ... on WpPage_Acf_Content_Text {
