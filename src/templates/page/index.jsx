@@ -114,18 +114,6 @@ export const query = graphql`
           ... on WpPage_Acf_Content_RelatedPublications {
             ...PublicationList
           }
-
-          ... on WpPage_Acf_Content_Findings {
-            title
-            image {
-              altText
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
-                }
-              }
-            }
-          }
         }
       }
     }
