@@ -4,9 +4,7 @@ import React, { Fragment } from 'react';
 
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
-import MoreLinksList from '../../components/more-links-list';
 import Picture from '../../components/picture';
-import PublicationList from '../../components/publication-list';
 import Richtext from '../../components/richtext';
 import withLayout from '../../components/with-layout';
 

@@ -84,22 +84,6 @@ export default css`
     }
   }
 
-  .additional-links-container {
-    margin-bottom: 2rem;
-    width: 100%;
-  }
-
-  .section-headline {
-    ${mixins.text('regular-big')};
-
-    align-items: center;
-    color: ${colors.blueBrand};
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0;
-    text-transform: uppercase;
-  }
-
   @media ${mq.tablet} {
     .section-headline {
       ${mixins.text('regular-big', 'tablet')};
@@ -109,16 +93,6 @@ export default css`
   @media ${mq.desktop} {
     .section-headline {
       ${mixins.text('regular-big', 'desktop')};
-    }
-  }
-
-  .publications-list-container {
-    margin-left: -1rem;
-  }
-
-  @media ${mq.desktop} {
-    .publications-list-container {
-      margin-left: calc(-15% - 10.5rem);
     }
   }
 `;
