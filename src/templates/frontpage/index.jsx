@@ -9,6 +9,8 @@ import PublicationsTeaser from '../../components/publications-teaser';
 import FindingsTeaser from '../../components/findings-teaser';
 import TwitterTimeline from '../../components/twitter-timeline';
 import withLayout from '../../components/with-layout';
+import LogoGrid from '../../components/LogoGrid';
+import Partner from '../../components/partner';
 
 const Page = ({
   data: {
@@ -34,6 +36,12 @@ const Page = ({
 
         case 'WpPage_Acf_Content_Findings':
           return <FindingsTeaser key={key} {...block} />;
+
+        case `WpPage_Acf_Content_Logogrid`:
+          return <LogoGrid {...block} key={index} />;
+
+        case `WpPage_Acf_Content_Partner`:
+          return <Partner {...block} key={index} />;
 
         case `WpPage_Acf_Content_FeaturedNews`:
           // TODO: https://github.com/gatsbyjs/gatsby-source-wordpress-experimental/issues/311
@@ -110,6 +118,12 @@ export const query = graphql`
                 }
               }
             }
+          }
+          ... on WpPage_Acf_Content_Logogrid {
+            ...LogoGrid
+          }
+          ... on WpPage_Acf_Content_Partner {
+            ...PartnerPage
           }
         }
       }
