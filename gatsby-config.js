@@ -23,7 +23,9 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: process.env.WP_ENDPOINT,
-
+        html: {
+          createStaticFiles: true,
+        },
         auth: {
           htaccess: {
             username: process.env.WP_AUTH_USERNAME,
