@@ -11,6 +11,9 @@ import TwitterTimeline from '../../components/twitter-timeline';
 import withLayout from '../../components/with-layout';
 import LogoGrid from '../../components/LogoGrid';
 import Partner from '../../components/partner';
+import Richtext from '../../components/richtext';
+import { getImage } from 'gatsby-plugin-image';
+import Figure from '../../components/figure';
 
 const Page = ({
   data: {
@@ -42,6 +45,20 @@ const Page = ({
 
         case `WpPage_Acf_Content_Partner`:
           return <Partner {...block} key={index} />;
+
+        case `WpPage_Acf_Content_Text`:
+          return <Richtext content={block.text} key={index} />;
+
+        case `WpPage_Acf_Content_Image`:
+          const image = getImage(block?.image?.localFile);
+          return image ? (
+            <Figure
+              altText={block.image.altText}
+              image={image}
+              caption={block?.image?.caption}
+              key={index}
+            />
+          ) : null;
 
         case `WpPage_Acf_Content_FeaturedNews`:
           // TODO: https://github.com/gatsbyjs/gatsby-source-wordpress-experimental/issues/311
@@ -115,6 +132,20 @@ export const query = graphql`
               localFile {
                 childImageSharp {
                   gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+                }
+              }
+            }
+          }
+          ... on WpPage_Acf_Content_Text {
+            text
+          }
+          ... on WpPage_Acf_Content_Image {
+            image {
+              altText
+              caption
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 800, placeholder: BLURRED)
                 }
               }
             }
