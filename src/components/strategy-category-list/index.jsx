@@ -15,11 +15,7 @@ export default ({ strategies = null }) => (
             {...strategy}
             featuredImage={strategy?.featuredImage?.node}
             theme={index % 2 === 0 ? null : 'green'}
-            indexTitle={`${
-              strategy.acf.strategyNumber > 1
-                ? `Strategy ${strategy.acf.strategyNumber - 1}: `
-                : ''
-            }${strategy.title}`}
+            indexTitle={strategy?.acf?.strategyLabel ?? ''}
           />
         </li>
       ))}

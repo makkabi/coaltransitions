@@ -78,7 +78,7 @@ export default ({
       <div className="intro-container">
         <h2 className="title">
           <Link to={url} rel="nofollow" className={titleLink.className}>
-            <span className="index">{indexTitle}</span>
+            {indexTitle && <span className="index">{indexTitle}</span>}
             <span dangerouslySetInnerHTML={{ __html: title }} />
           </Link>
         </h2>
@@ -118,6 +118,7 @@ export const fragment = graphql`
     acf {
       intro
       strategyNumber
+      strategyLabel
     }
   }
 `;
