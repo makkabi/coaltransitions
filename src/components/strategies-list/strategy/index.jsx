@@ -12,6 +12,9 @@ export const fragment = graphql`
   fragment strategyListItem on WpStrategy {
     slug
     title
+    acf {
+      subtitle
+    }
     featuredImage {
       node {
         altText
@@ -44,6 +47,7 @@ export default ({
   featuredImage,
   url,
   onFilter,
+  acf: { subtitle },
 }) => {
   const image = getImage(featuredImage?.node?.localFile);
 
@@ -68,12 +72,15 @@ export default ({
       </div>
 
       <div className="content-container">
-        <h2 className="title">
-          <Link to={url} className={linkTitle.className}>
-            <span dangerouslySetInnerHTML={{ __html: title }} />
-          </Link>
-        </h2>
+        <header>
+          <h2 className="title">
+            <Link to={url} className={linkTitle.className}>
+              <span dangerouslySetInnerHTML={{ __html: title }} />
+            </Link>
+          </h2>
 
+          {subtitle && <p className="subtitle">{subtitle}</p>}
+        </header>
         {strategyTags && (
           <div className="tags-container">
             <TagList

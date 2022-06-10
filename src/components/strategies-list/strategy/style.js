@@ -31,6 +31,10 @@ export default css`
     }
   }
 
+  .subtitle {
+    margin: -1rem 0 1rem;
+  }
+
   .cover-image-container {
     align-self: flex-start;
     border: 1px solid ${colors.greyLight};
