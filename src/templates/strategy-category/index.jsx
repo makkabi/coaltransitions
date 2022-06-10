@@ -55,10 +55,17 @@ const Page = ({
                     return <Richtext content={block.text} />;
 
                   case 'WpStrategyCategory_Acf_Content_Image':
+                    const image = getImage(block?.image.localFile);
+
+                    if (!image) {
+                      return null;
+                    }
                     return (
-                      <Picture
-                        image={block.image.localFile}
+                      <Figure
+                        altText={block.image.altText}
+                        image={image}
                         caption={block.image.caption}
+                        captionClassName={captionStyle.className}
                       />
                     );
 
