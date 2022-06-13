@@ -13,6 +13,7 @@ import { getImage } from 'gatsby-plugin-image';
 import Figure from '../../components/figure';
 import { captionStyle } from '../../components/findings-list/finding/style';
 import Partner from '../../components/partner';
+import Newsletter from '../../components/Newsletter';
 
 const Page = ({
   data: {
@@ -73,6 +74,9 @@ const Page = ({
 
                   case `WpStrategyCategory_Acf_Content_Partner`:
                     return <Partner {...block} key={index} />;
+
+                  case `WpStrategyCategory_Acf_Content_Newsletter`:
+                    return <Newsletter {...block} key={index} />;
 
                   default:
                     return <p>Block not implemented</p>;
@@ -141,6 +145,12 @@ export const query = graphql`
                 }
               }
             }
+          }
+          ... on WpStrategyCategory_Acf_Content_Newsletter {
+            title
+            intro
+            link
+            linklabel
           }
         }
       }
