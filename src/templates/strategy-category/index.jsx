@@ -12,6 +12,7 @@ import style, { featuredImage as featuredImageStyle } from './style';
 import { getImage } from 'gatsby-plugin-image';
 import Figure from '../../components/figure';
 import { captionStyle } from '../../components/findings-list/finding/style';
+import Partner from '../../components/partner';
 
 const Page = ({
   data: {
@@ -49,10 +50,10 @@ const Page = ({
 
           {content && (
             <div className="description">
-              {content.map(({ __typename, ...block }) => {
+              {content.map(({ __typename, ...block }, index) => {
                 switch (__typename) {
                   case 'WpStrategyCategory_Acf_Content_Text':
-                    return <Richtext content={block.text} />;
+                    return <Richtext content={block.text} key={index} />;
 
                   case 'WpStrategyCategory_Acf_Content_Image':
                     const image = getImage(block?.image.localFile);
@@ -66,8 +67,12 @@ const Page = ({
                         image={image}
                         caption={block.image.caption}
                         captionClassName={captionStyle.className}
+                        key={index}
                       />
                     );
+
+                  case `WpStrategyCategory_Acf_Content_Partner`:
+                    return <Partner {...block} key={index} />;
 
                   default:
                     return <p>Block not implemented</p>;
@@ -109,6 +114,23 @@ export const query = graphql`
             image {
               altText
               caption
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 800
+                    placeholder: BLURRED
+                    layout: CONSTRAINED
+                  )
+                }
+              }
+            }
+          }
+          ... on WpStrategyCategory_Acf_Content_Partner {
+            name
+            summary
+            link
+            logo {
+              altText
               localFile {
                 childImageSharp {
                   gatsbyImageData(
