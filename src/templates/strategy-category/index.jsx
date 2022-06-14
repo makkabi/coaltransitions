@@ -14,13 +14,14 @@ import Figure from '../../components/figure';
 import { captionStyle } from '../../components/findings-list/finding/style';
 import Partner from '../../components/partner';
 import Newsletter from '../../components/Newsletter';
+import StrategiesList from '../../components/strategies-list';
 
 const Page = ({
   data: {
     finding: {
       title,
       featuredImage,
-      acf: { intro, content },
+      acf: { intro, content, relatedStrategies },
     },
   },
 }) => {
@@ -83,6 +84,14 @@ const Page = ({
                 }
               })}
             </div>
+          )}
+
+          {relatedStrategies?.length && (
+            <StrategiesList
+              title={`Strategies (${relatedStrategies.length})`}
+              strategies={relatedStrategies.map(({ strategy }) => strategy)}
+              onFilter={false}
+            />
           )}
         </div>
       </Constraint>
@@ -151,6 +160,14 @@ export const query = graphql`
             intro
             link
             linklabel
+          }
+        }
+
+        relatedStrategies {
+          strategy {
+            ... on WpStrategy {
+              ...strategyListItem
+            }
           }
         }
       }
