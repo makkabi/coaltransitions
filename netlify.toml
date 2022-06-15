@@ -44,3 +44,20 @@
 [[redirects]]
   from = "/2019/*"
   to = "/"
+
+
+[[redirects]]
+  from = "/tools-resist/coping-strategies/"
+  to = "/tools/coping-strategies/"
+
+[[redirects]]
+  from = "/tools-resist/"
+  to = "/tools/coping-strategies/"
+
+[[redirects]]
+  from = "/tools-resist/participant-information-sheet/"
+  to = "/tools/participant-information-sheet/"
+
+[[redirects]]
+  from = "/tools-resist/*"
+  to = "/tools/coping-strategies/:splat"
