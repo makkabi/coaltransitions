@@ -18,7 +18,7 @@ const createPages = (data, createPage) => {
   } = data;
 
   strategyCategories.forEach(({ slug, databaseId }) => {
-    const pagePath = `/tools-resist/${slug}/`;
+    const pagePath = `/tools/coping-strategies/${slug}/`;
     const context = {
       databaseId,
     };

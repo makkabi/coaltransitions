@@ -18,7 +18,7 @@ const createPages = (data, createPage) => {
   } = data;
 
   strategies.forEach(({ slug, databaseId }) => {
-    const pagePath = `/tools-resist/strategies/${slug}/`;
+    const pagePath = `/tools/coping-strategies/${slug}/`;
 
     // eslint-disable-next-line no-console
     console.log('Create strategy:', pagePath);

@@ -35,7 +35,7 @@ export default ({
   buttonLabelAria = 'Read more about this finding',
   fullsizeImage = false,
 }) => {
-  const url = `/tools-resist/${slug ? `${slug}/` : ''}`;
+  const url = `/tools/coping-strategies/${slug ? `${slug}/` : ''}`;
 
   const strokesIndex = useMemo(
     () => Math.floor(Math.random() * STROKES.length),

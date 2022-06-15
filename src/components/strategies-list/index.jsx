@@ -16,7 +16,7 @@ export default ({ title, strategies = [], onFilter, showAllLink = false }) => (
           <>
             <hr />
             <Button
-              to="/tools-resist/strategies/"
+              to="/tools/inventory/"
               theme="blue"
               aria-label="Show all Strategies"
             >
@@ -32,7 +32,7 @@ export default ({ title, strategies = [], onFilter, showAllLink = false }) => (
         {strategies.map(({ slug, ...attributes }) => (
           <li key={slug}>
             <Strategy
-              url={`/tools-resist/strategies/${slug}/`}
+              url={`/tools/coping-strategies/${slug}/`}
               onFilter={onFilter}
               {...attributes}
             />
