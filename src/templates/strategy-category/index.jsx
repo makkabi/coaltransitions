@@ -14,6 +14,8 @@ import { captionStyle } from '../../components/findings-list/finding/style';
 import Partner from '../../components/partner';
 import Newsletter from '../../components/Newsletter';
 import StrategiesList from '../../components/strategies-list';
+import { submenuItems } from '../../lib/tools-submenu';
+import SubMenu from '../../components/sub-menu';
 
 const Page = ({
   data: {
@@ -31,7 +33,7 @@ const Page = ({
       <style jsx>{style}</style>
       {featuredImageStyle.styles}
       <Helmet title={title} />
-
+      <SubMenu items={submenuItems} />
       <header className="header">
         <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
 

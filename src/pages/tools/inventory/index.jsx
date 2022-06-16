@@ -12,6 +12,8 @@ import { sortBySecondName } from '../../../lib/sort-by-second-name';
 import withLayout from '../../../components/with-layout';
 import StrategiesList from '../../../components/strategies-list';
 import { extractStrategyTerms, filterStrategies } from '../../../lib/strategy';
+import { submenuItems } from '../../../lib/tools-submenu';
+import SubMenu from '../../../components/sub-menu';
 
 const Filter = React.lazy(() => import('../../../components/filter'));
 
@@ -66,7 +68,7 @@ const Page = ({
   return (
     <>
       <Helmet title="Inventory of Coping Strategies" />
-
+      <SubMenu items={submenuItems} />
       <Constraint wide>
         <FilterButton onClick={() => setShowFilter(!showFilter)}>
           Filter

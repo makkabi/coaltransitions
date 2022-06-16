@@ -15,6 +15,8 @@ import Figure from '../../components/figure';
 import { captionStyle } from '../../components/findings-list/finding/style';
 import Newsletter from '../../components/Newsletter';
 import Partner from '../../components/partner';
+import { submenuItems } from '../../lib/tools-submenu';
+import SubMenu from '../../components/sub-menu';
 
 const Page = ({
   data: {
@@ -40,191 +42,194 @@ const Page = ({
   const image = getImage(featuredImage?.node?.localFile);
   console.log({ buttonIcon });
   return (
-    <Constraint superwide>
+    <>
+      {' '}
       <Helmet title={title} />
+      <SubMenu items={submenuItems} />
+      <Constraint superwide>
+        <article className="strategy">
+          <style jsx>{style}</style>
+          <style jsx>{newsletter}</style>
+          {buttonIcon.styles}
+          <div className="left-column">
+            <header className="header">
+              <h1 className="title">
+                <span dangerouslySetInnerHTML={{ __html: title }} />
+              </h1>
 
-      <article className="strategy">
-        <style jsx>{style}</style>
-        <style jsx>{newsletter}</style>
-        {buttonIcon.styles}
-        <div className="left-column">
-          <header className="header">
-            <h1 className="title">
-              <span dangerouslySetInnerHTML={{ __html: title }} />
-            </h1>
+              {subtitle && <p className="subtitle">{subtitle}</p>}
 
-            {subtitle && <p className="subtitle">{subtitle}</p>}
+              {featuredImage?.node?.localFile && (
+                <div className="cover-image-container">
+                  {image && (
+                    <Figure
+                      altText={featuredImage.altText}
+                      image={image}
+                      caption={featuredImage.caption}
+                      captionClassName={captionStyle.className}
+                    />
+                  )}
+                </div>
+              )}
+            </header>
 
-            {featuredImage?.node?.localFile && (
-              <div className="cover-image-container">
-                {image && (
-                  <Figure
-                    altText={featuredImage.altText}
-                    image={image}
-                    caption={featuredImage.caption}
-                    captionClassName={captionStyle.className}
-                  />
-                )}
+            {themeGeneralSettings.spreadsheetUrl && (
+              <Button
+                to={themeGeneralSettings.spreadsheetUrl}
+                download
+                theme="blue"
+              >
+                Download Spreadsheet&nbsp;
+                <DownloadIcon className={buttonIcon.className} />
+              </Button>
+            )}
+
+            {relatedStrategies?.length && (
+              <section className="related-strategies related-strategies--related">
+                <h2 className="meta-block-title">Related Strategies</h2>
+                <ul>
+                  {relatedStrategies
+                    .filter((item) => item?.strategy)
+                    .map(({ strategy: { uri, title } }) => (
+                      <li key={uri}>
+                        <a href={uri}>{title}</a>
+                      </li>
+                    ))}
+                </ul>
+              </section>
+            )}
+          </div>
+          <div className="body">
+            {content && (
+              <div className="description">
+                {content.map(({ __typename, ...block }, index) => {
+                  switch (__typename) {
+                    case 'WpStrategy_Acf_Content_Text':
+                      return <Richtext content={block.text} key={index} />;
+
+                    case 'WpStrategy_Acf_Content_Image':
+                      const image = getImage(block?.image?.localFile);
+
+                      return image ? (
+                        <Figure
+                          altText={block.image.altText}
+                          image={image}
+                          caption={block.image.caption}
+                          captionClassName={captionStyle.className}
+                          key={index}
+                        />
+                      ) : null;
+
+                    case 'WpStrategy_Acf_Content_Newsletter':
+                      return <Newsletter {...block} key={index} />;
+
+                    case 'WpStrategy_Acf_Content_Partner':
+                      return <Partner {...block} key={index} />;
+
+                    default:
+                      return <p key={index}>Block not implemented</p>;
+                  }
+                })}
               </div>
             )}
-          </header>
 
-          {themeGeneralSettings.spreadsheetUrl && (
-            <Button
-              to={themeGeneralSettings.spreadsheetUrl}
-              download
-              theme="blue"
-            >
-              Download Spreadsheet&nbsp;
-              <DownloadIcon className={buttonIcon.className} />
-            </Button>
-          )}
+            {themeGeneralSettings.strategiesInfobox && (
+              <aside
+                className="infobox"
+                dangerouslySetInnerHTML={{
+                  __html: themeGeneralSettings.strategiesInfobox,
+                }}
+              />
+            )}
 
-          {relatedStrategies?.length && (
-            <section className="related-strategies related-strategies--related">
-              <h2 className="meta-block-title">Related Strategies</h2>
-              <ul>
-                {relatedStrategies
-                  .filter((item) => item?.strategy)
-                  .map(({ strategy: { uri, title } }) => (
-                    <li key={uri}>
-                      <a href={uri}>{title}</a>
-                    </li>
-                  ))}
-              </ul>
-            </section>
-          )}
-        </div>
-        <div className="body">
-          {content && (
-            <div className="description">
-              {content.map(({ __typename, ...block }, index) => {
-                switch (__typename) {
-                  case 'WpStrategy_Acf_Content_Text':
-                    return <Richtext content={block.text} key={index} />;
+            {exampleStrategies?.length && (
+              <section className="related-strategies related-strategies--example">
+                <h2>Regional Example Strategies</h2>
+                <ul>
+                  {exampleStrategies
+                    .filter((item) => item?.strategy)
+                    .map(({ strategy: { uri, title } }) => (
+                      <li key={uri}>
+                        <a href={uri}>{title}</a>
+                      </li>
+                    ))}
+                </ul>
+              </section>
+            )}
 
-                  case 'WpStrategy_Acf_Content_Image':
-                    const image = getImage(block?.image?.localFile);
+            {additionalContent && (
+              <div className="description">
+                {additionalContent.map(({ __typename, ...block }, index) => {
+                  switch (__typename) {
+                    case 'WpStrategy_Acf_AdditionalContent_Text':
+                      return <Richtext content={block.text} key={index} />;
 
-                    return image ? (
-                      <Figure
-                        altText={block.image.altText}
-                        image={image}
-                        caption={block.image.caption}
-                        captionClassName={captionStyle.className}
-                        key={index}
-                      />
-                    ) : null;
+                    case 'WpStrategy_Acf_AdditionalContent_Image':
+                      const image = getImage(block?.image?.localFile);
 
-                  case 'WpStrategy_Acf_Content_Newsletter':
-                    return <Newsletter {...block} key={index} />;
+                      return image ? (
+                        <Figure
+                          altText={block.image.altText}
+                          image={image}
+                          caption={block.image.caption}
+                          captionClassName={captionStyle.className}
+                          key={index}
+                        />
+                      ) : null;
 
-                  case 'WpStrategy_Acf_Content_Partner':
-                    return <Partner {...block} key={index} />;
+                    case 'WpStrategy_Acf_AdditionalContent_Newsletter':
+                      return <Newsletter {...block} key={index} />;
 
-                  default:
-                    return <p key={index}>Block not implemented</p>;
-                }
-              })}
-            </div>
-          )}
+                    case 'WpStrategy_Acf_AdditionalContent_Partner':
+                      return <Partner {...block} key={index} />;
 
-          {themeGeneralSettings.strategiesInfobox && (
-            <aside
-              className="infobox"
-              dangerouslySetInnerHTML={{
-                __html: themeGeneralSettings.strategiesInfobox,
-              }}
-            />
-          )}
-
-          {exampleStrategies?.length && (
-            <section className="related-strategies related-strategies--example">
-              <h2>Regional Example Strategies</h2>
-              <ul>
-                {exampleStrategies
-                  .filter((item) => item?.strategy)
-                  .map(({ strategy: { uri, title } }) => (
-                    <li key={uri}>
-                      <a href={uri}>{title}</a>
-                    </li>
-                  ))}
-              </ul>
-            </section>
-          )}
-
-          {additionalContent && (
-            <div className="description">
-              {additionalContent.map(({ __typename, ...block }, index) => {
-                switch (__typename) {
-                  case 'WpStrategy_Acf_AdditionalContent_Text':
-                    return <Richtext content={block.text} key={index} />;
-
-                  case 'WpStrategy_Acf_AdditionalContent_Image':
-                    const image = getImage(block?.image?.localFile);
-
-                    return image ? (
-                      <Figure
-                        altText={block.image.altText}
-                        image={image}
-                        caption={block.image.caption}
-                        captionClassName={captionStyle.className}
-                        key={index}
-                      />
-                    ) : null;
-
-                  case 'WpStrategy_Acf_AdditionalContent_Newsletter':
-                    return <Newsletter {...block} key={index} />;
-
-                  case 'WpStrategy_Acf_AdditionalContent_Partner':
-                    return <Partner {...block} key={index} />;
-
-                  default:
-                    return <p key={index}>Block not implemented</p>;
-                }
-              })}
-            </div>
-          )}
-        </div>
-
-        <div className="meta">
-          {strategyTags && (
-            <section className="meta-block">
-              <h2 className="meta-block-title">Keywords</h2>
-
-              <div>
-                <TagList
-                  tags={strategyTags}
-                  filterUrl="/tools-resist/strategies?keyword="
-                  filterName="strategyTag"
-                />
+                    default:
+                      return <p key={index}>Block not implemented</p>;
+                  }
+                })}
               </div>
-            </section>
-          )}
+            )}
+          </div>
 
-          {actorTags && (
-            <section className="meta-block">
-              <h2 className="meta-block-title">Actors</h2>
+          <div className="meta">
+            {strategyTags && (
+              <section className="meta-block">
+                <h2 className="meta-block-title">Keywords</h2>
 
-              <div>
-                <TagList
-                  tags={actorTags}
-                  filterUrl="/tools-resist/strategies?actor="
-                  filterName="actor"
-                />
-              </div>
-            </section>
-          )}
+                <div>
+                  <TagList
+                    tags={strategyTags}
+                    filterUrl="/tools-resist/strategies?keyword="
+                    filterName="strategyTag"
+                  />
+                </div>
+              </section>
+            )}
 
-          {actions && (
-            <section className="meta-block">
-              <h2 className="meta-block-title">Actions</h2>
-              <div dangerouslySetInnerHTML={{ __html: actions }} />
-            </section>
-          )}
-        </div>
-      </article>
-    </Constraint>
+            {actorTags && (
+              <section className="meta-block">
+                <h2 className="meta-block-title">Actors</h2>
+
+                <div>
+                  <TagList
+                    tags={actorTags}
+                    filterUrl="/tools-resist/strategies?actor="
+                    filterName="actor"
+                  />
+                </div>
+              </section>
+            )}
+
+            {actions && (
+              <section className="meta-block">
+                <h2 className="meta-block-title">Actions</h2>
+                <div dangerouslySetInnerHTML={{ __html: actions }} />
+              </section>
+            )}
+          </div>
+        </article>
+      </Constraint>
+    </>
   );
 };
 
