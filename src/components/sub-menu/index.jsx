@@ -33,7 +33,7 @@ export default ({ items }) => (
     {item.styles}
 
     {items &&
-      items.map(({ title, slug, uri, acf }) => {
+      items.map(({ title, slug = '', uri, acf = {} }) => {
         if (acf?.hideInSubmenu) {
           return null;
         }
