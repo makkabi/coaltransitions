@@ -4,7 +4,6 @@ import React, { Fragment } from 'react';
 
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
-import Picture from '../../components/picture';
 import Richtext from '../../components/richtext';
 import withLayout from '../../components/with-layout';
 
@@ -21,7 +20,7 @@ const Page = ({
     finding: {
       title,
       featuredImage,
-      acf: { intro, content, relatedStrategies },
+      acf: { intro, content },
     },
   },
 }) => {
@@ -73,25 +72,30 @@ const Page = ({
                       />
                     );
 
-                  case `WpStrategyCategory_Acf_Content_Partner`:
+                  case 'WpStrategyCategory_Acf_Content_Partner':
                     return <Partner {...block} key={index} />;
 
-                  case `WpStrategyCategory_Acf_Content_Newsletter`:
+                  case 'WpStrategyCategory_Acf_Content_Newsletter':
                     return <Newsletter {...block} key={index} />;
+
+                  case 'WpStrategyCategory_Acf_Content_RelatedStrategies':
+                    return (
+                      block?.relatedStrategies?.length && (
+                        <StrategiesList
+                          title={`Strategies (${block?.relatedStrategies.length})`}
+                          strategies={block?.relatedStrategies.map(
+                            ({ strategy }) => strategy
+                          )}
+                          onFilter={false}
+                        />
+                      )
+                    );
 
                   default:
                     return <p>Block not implemented</p>;
                 }
               })}
             </div>
-          )}
-
-          {relatedStrategies?.length && (
-            <StrategiesList
-              title={`Strategies (${relatedStrategies.length})`}
-              strategies={relatedStrategies.map(({ strategy }) => strategy)}
-              onFilter={false}
-            />
           )}
         </div>
       </Constraint>
@@ -161,12 +165,12 @@ export const query = graphql`
             link
             linklabel
           }
-        }
 
-        relatedStrategies {
-          strategy {
-            ... on WpStrategy {
-              ...strategyListItem
+          ... on WpStrategyCategory_Acf_Content_RelatedStrategies {
+            relatedStrategies {
+              strategy {
+                ...strategyListItem
+              }
             }
           }
         }
