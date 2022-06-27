@@ -223,7 +223,10 @@ const Page = ({
             {actions && (
               <section className="meta-block">
                 <h2 className="meta-block-title">Actions</h2>
-                <div dangerouslySetInnerHTML={{ __html: actions }} />
+                <div
+                  className="meta-block-content"
+                  dangerouslySetInnerHTML={{ __html: actions }}
+                />
               </section>
             )}
           </div>
