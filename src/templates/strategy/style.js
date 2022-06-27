@@ -112,9 +112,22 @@ export default css`
   }
 
   .infobox {
+    ${mixins.text('regular')}
     border-color: ${colors.greyLight};
     border-style: solid;
     border-width: 2px 0;
+  }
+
+  @media ${mq.tablet} {
+    .infobox {
+      ${mixins.text('regular', 'tablet')}
+    }
+  }
+
+  @media ${mq.desktop} {
+    .infobox {
+      ${mixins.text('regular', 'desktop')}
+    }
   }
 
   .meta {
