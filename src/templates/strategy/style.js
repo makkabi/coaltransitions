@@ -98,13 +98,6 @@ export default css`
 
   .related-strategies a {
     font-weight: bold;
-    line-height: 1.5;
-  }
-
-  @media ${mq.desktop} {
-    .related-strategies a {
-      ${mixins.text('medium', 'desktop')}
-    }
   }
 
   .body h2 {

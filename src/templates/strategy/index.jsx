@@ -142,21 +142,6 @@ const Page = ({
               />
             )}
 
-            {exampleStrategies?.length && (
-              <section className="related-strategies related-strategies--example">
-                <h2>Regional Example Strategies</h2>
-                <ul>
-                  {exampleStrategies
-                    .filter((item) => item?.strategy)
-                    .map(({ strategy: { uri, title } }) => (
-                      <li key={uri}>
-                        <a href={uri}>{title}</a>
-                      </li>
-                    ))}
-                </ul>
-              </section>
-            )}
-
             {additionalContent && (
               <div className="description">
                 {additionalContent.map(({ __typename, ...block }, index) => {
@@ -227,6 +212,24 @@ const Page = ({
                   className="meta-block-content"
                   dangerouslySetInnerHTML={{ __html: actions }}
                 />
+              </section>
+            )}
+
+            {exampleStrategies?.length && (
+              <section className="meta-block related-strategies related-strategies--example">
+                <h2 className="meta-block-title">
+                  Regional Example Strategies
+                </h2>
+
+                <ul className="meta-block-content">
+                  {exampleStrategies
+                    .filter((item) => item?.strategy)
+                    .map(({ strategy: { uri, title } }) => (
+                      <li key={uri}>
+                        <a href={uri}>{title}</a>
+                      </li>
+                    ))}
+                </ul>
               </section>
             )}
           </div>
