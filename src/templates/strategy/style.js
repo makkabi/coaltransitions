@@ -109,6 +109,7 @@ export default css`
     border-color: ${colors.greyLight};
     border-style: solid;
     border-width: 2px 0;
+    margin: 2rem 0;
   }
 
   @media ${mq.tablet} {
