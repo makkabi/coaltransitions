@@ -87,7 +87,7 @@ const Page = ({
             {relatedStrategies?.length && (
               <section className="related-strategies related-strategies--related">
                 <h2 className="meta-block-title">Related Strategies</h2>
-                <ul>
+                <ul className="meta-block-content">
                   {relatedStrategies
                     .filter((item) => item?.strategy)
                     .map(({ strategy: { uri, title } }) => (
