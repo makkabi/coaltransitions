@@ -84,7 +84,6 @@ const Page = ({
                     return (
                       block?.relatedStrategies?.length && (
                         <StrategiesList
-                          title={`Strategies (${block?.relatedStrategies.length})`}
                           strategies={block?.relatedStrategies.map(
                             ({ strategy }) => strategy
                           )}
