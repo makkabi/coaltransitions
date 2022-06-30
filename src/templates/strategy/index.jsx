@@ -184,7 +184,7 @@ const Page = ({
                 <div>
                   <TagList
                     tags={strategyTags}
-                    filterUrl="/tools-resist/strategies?keyword="
+                    filterUrl="/tools/inventory?keywords="
                     filterName="strategyTag"
                   />
                 </div>
@@ -198,7 +198,7 @@ const Page = ({
                 <div>
                   <TagList
                     tags={actorTags}
-                    filterUrl="/tools-resist/strategies?actor="
+                    filterUrl="/tools/inventory?actors="
                     filterName="actor"
                   />
                 </div>
