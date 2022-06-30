@@ -63,9 +63,9 @@ const Page = ({
                 <div className="cover-image-container">
                   {image && (
                     <Figure
-                      altText={featuredImage.altText}
+                      altText={featuredImage.node.altText}
                       image={image}
-                      caption={featuredImage.caption}
+                      caption={featuredImage.node.caption}
                       captionClassName={captionStyle.className}
                     />
                   )}
@@ -246,6 +246,7 @@ export const query = graphql`
       featuredImage {
         node {
           altText
+          caption
           localFile {
             childImageSharp {
               gatsbyImageData(width: 300, placeholder: BLURRED)
