@@ -83,21 +83,6 @@ const Page = ({
                 <DownloadIcon className={buttonIcon.className} />
               </Button>
             )}
-
-            {relatedStrategies?.length && (
-              <section className="related-strategies related-strategies--related">
-                <h2 className="meta-block-title">Related Strategies</h2>
-                <ul className="meta-block-content">
-                  {relatedStrategies
-                    .filter((item) => item?.strategy)
-                    .map(({ strategy: { uri, title } }) => (
-                      <li key={uri}>
-                        <a href={uri}>{title}</a>
-                      </li>
-                    ))}
-                </ul>
-              </section>
-            )}
           </div>
           <div className="body">
             {content && (
@@ -212,6 +197,21 @@ const Page = ({
                   className="meta-block-content"
                   dangerouslySetInnerHTML={{ __html: actions }}
                 />
+              </section>
+            )}
+
+            {relatedStrategies?.length && (
+              <section className="related-strategies related-strategies--related">
+                <h2 className="meta-block-title">Related Strategies</h2>
+                <ul className="meta-block-content">
+                  {relatedStrategies
+                    .filter((item) => item?.strategy)
+                    .map(({ strategy: { uri, title } }) => (
+                      <li key={uri}>
+                        <a href={uri}>{title}</a>
+                      </li>
+                    ))}
+                </ul>
               </section>
             )}
 
