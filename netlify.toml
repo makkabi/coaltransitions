@@ -55,6 +55,10 @@
   to = "/tools/coping-strategies/"
 
 [[redirects]]
+  from = "/tools/"
+  to = "/tools/coping-strategies/"
+
+[[redirects]]
   from = "/tools-resist/participant-information-sheet/"
   to = "/tools/participant-information-sheet/"
 
