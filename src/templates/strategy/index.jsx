@@ -217,9 +217,7 @@ const Page = ({
 
             {exampleStrategies?.length && (
               <section className="meta-block related-strategies related-strategies--example">
-                <h2 className="meta-block-title">
-                  Regional Example Strategies
-                </h2>
+                <h2 className="meta-block-title">Sample Actions</h2>
 
                 <ul className="meta-block-content">
                   {exampleStrategies
