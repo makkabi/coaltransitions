@@ -33,6 +33,7 @@ export default css`
 
   .subtitle {
     margin: -1rem 0 1rem;
+    ${mixins.text('regular')};
   }
 
   .cover-image-container {
