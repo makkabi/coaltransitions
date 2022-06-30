@@ -20,7 +20,7 @@ export const fragment = graphql`
         altText
         localFile {
           childImageSharp {
-            gatsbyImageData(width: 300, placeholder: BLURRED)
+            gatsbyImageData(width: 300, height: 300, placeholder: BLURRED)
           }
         }
       }
