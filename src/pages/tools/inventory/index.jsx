@@ -174,7 +174,9 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    strategies: allWpStrategy {
+    strategies: allWpStrategy(
+      filter: { acf: { hideInInventory: { ne: true } } }
+    ) {
       nodes {
         ...strategyListItem
       }
