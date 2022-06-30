@@ -85,7 +85,7 @@ export default ({
           <div className="tags-container">
             <TagList
               tags={strategyTags}
-              filterUrl="/tools/inventory?keyword="
+              filterUrl="/tools/inventory?keywords="
               filterName="tags"
               onFilter={onFilter}
             />
@@ -96,7 +96,7 @@ export default ({
           <div className="tags-container">
             <TagList
               tags={actorTags}
-              filterUrl="/tools/inventory?actor="
+              filterUrl="/tools/inventory?actors="
               filterName="actors"
               onFilter={onFilter}
             />
