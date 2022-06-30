@@ -4,7 +4,12 @@ import Button from '../button';
 import Strategy from './strategy';
 import style from './style';
 
-export default ({ title, strategies = [], onFilter, showAllLink = false }) => (
+export default ({
+  title = '',
+  strategies = [],
+  onFilter,
+  showAllLink = false,
+}) => (
   <div className="strategies-container">
     <style jsx>{style}</style>
 
