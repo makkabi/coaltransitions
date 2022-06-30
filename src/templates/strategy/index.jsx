@@ -79,7 +79,7 @@ const Page = ({
                 download
                 theme="blue"
               >
-                Download Spreadsheet&nbsp;
+                Spreadsheet&nbsp;
                 <DownloadIcon className={buttonIcon.className} />
               </Button>
             )}
