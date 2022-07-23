@@ -71,12 +71,12 @@ module.exports = {
     'gatsby-plugin-advanced-sitemap',
   ],
 
-  /*  developMiddleware: (app) => {
+  developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
       createProxyMiddleware({
         target: 'http://localhost:9000',
       })
     );
-  },*/
+  },
 };
