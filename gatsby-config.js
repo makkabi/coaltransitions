@@ -62,7 +62,7 @@ module.exports = {
       },
     },
 
-    //  'gatsby-plugin-netlify',
+    'gatsby-plugin-netlify',
     'gatsby-plugin-styled-jsx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
