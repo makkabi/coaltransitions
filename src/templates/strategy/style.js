@@ -39,7 +39,7 @@ export default css`
   }
 
   .title {
-    ${mixins.text('extra-big')}
+    ${mixins.text('big')}
 
     margin-bottom: 1.5rem;
     margin-top: 0;
@@ -49,7 +49,7 @@ export default css`
 
   @media ${mq.tablet} {
     .title {
-      ${mixins.text('extra-big', 'tablet')}
+      ${mixins.text('big', 'tablet')}
 
       margin-bottom: 1.5rem;
       order: 1;
@@ -58,7 +58,7 @@ export default css`
 
   @media ${mq.desktop} {
     .title {
-      ${mixins.text('extra-big', 'desktop')}
+      ${mixins.text('big', 'desktop')}
     }
 
     .left-column {
@@ -84,6 +84,8 @@ export default css`
 
   .header {
     margin-bottom: 1.5rem;
+    overflow: hidden;
+    max-width: 100%;
   }
 
   .related-strategies {
