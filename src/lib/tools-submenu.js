@@ -11,6 +11,10 @@ export const submenuItems = [
     title: 'Inventory of Coping Strategies',
     uri: '/tools/inventory/',
   },
+  {
+    title: 'Maps',
+    uri: 'https://storymaps.arcgis.com/collections/263f2045c6c54b9ab120755369d64756',
+  },
   /*  {
     title: 'Overview',
     uri: '/tools/coping-strategies/overview/',
