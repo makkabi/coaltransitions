@@ -13,6 +13,7 @@ export const fragment = graphql`
     title
     acf {
       intro
+      customdate
       content {
         ... on WpNewsEntry_Acf_Content_Text {
           __typename
@@ -39,12 +40,12 @@ export const fragment = graphql`
   }
 `;
 
-const News = ({ title, date, acf: { intro, content } }) => (
+const News = ({ title, date, acf: { intro, content, customdate } }) => (
   <article>
     <style jsx>{style}</style>
     <Constraint topLevel>
       <h1 className="title">
-        <small className="date">{date}</small>
+        <small className="date">{customdate ?? date}</small>
         <span className="title-text">{title}</span>
       </h1>
 

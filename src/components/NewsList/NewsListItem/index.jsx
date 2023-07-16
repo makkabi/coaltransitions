@@ -11,6 +11,7 @@ export const fragment = graphql`
     uri
     acf {
       intro
+      customdate
     }
 
     newsTags {
@@ -74,7 +75,7 @@ const NewsListItem = ({
   title,
   date,
   uri,
-  acf: { intro },
+  acf: { intro, customdate },
   newsTags: { nodes: tags },
 }) => {
   const typeIconMap = {
@@ -91,7 +92,7 @@ const NewsListItem = ({
 
       <h2 className="title">
         <div className="date-container">
-          <small className="date">{date}</small>
+          <small className="date">{customdate ?? date}</small>
           {tags && tags.length > 0 && (
             <span className="type">
               {tags.map(({ name, slug }) => {
