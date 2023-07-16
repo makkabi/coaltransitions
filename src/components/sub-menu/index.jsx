@@ -45,6 +45,11 @@ export default ({ items }) => (
               }
               dangerouslySetInnerHTML={{ __html: acf?.shorttitle || title }}
               className={item.className}
+              target={
+                uri?.startsWith('https://storymaps.arcgis.com')
+                  ? '_blank'
+                  : null
+              }
             />
           </li>
         );
