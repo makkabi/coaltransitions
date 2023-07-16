@@ -40,7 +40,7 @@ const Page = ({
   },
 }) => {
   const image = getImage(featuredImage?.node?.localFile);
-  console.log({ buttonIcon });
+
   return (
     <>
       {' '}
