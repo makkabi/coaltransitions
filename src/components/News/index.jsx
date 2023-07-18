@@ -19,6 +19,24 @@ export const fragment = graphql`
           __typename
           text
         }
+        ... on WpNewsEntry_Acf_Content_Partner {
+          __typename
+          name
+          summary
+          link
+          logo {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 800
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                )
+              }
+            }
+          }
+        }
         ... on WpNewsEntry_Acf_Content_Image {
           __typename
           image {
