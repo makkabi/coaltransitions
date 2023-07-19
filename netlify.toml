@@ -30,6 +30,10 @@
   to = "/about/research-partners/"
 
 [[redirects]]
+  from = "/about/network/"
+  to = "/about/links/"
+
+[[redirects]]
   from = "/media/resources/"
   to = "/"
 
