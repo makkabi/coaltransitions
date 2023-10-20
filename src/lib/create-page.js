@@ -66,6 +66,13 @@ const createPages = (
       databaseId,
     };
 
+    // Hack, since the query no longer returned the siblings of the project page
+    const projectMenuIds = [2070, 4683, 2130, 2188];
+
+    if (projectMenuIds.includes(databaseId)) {
+      context.siblings = projectMenuIds;
+    }
+
     if (siblings?.node?.wpChildren?.nodes?.length > 0) {
       context.siblings = siblings.node.wpChildren.nodes
         .sort(sortByMenuOrder)
