@@ -73,6 +73,12 @@ const createPages = (
       context.siblings = projectMenuIds;
     }
 
+    const aboutMenuIds = [536, 542, 7566, 540, 761];
+
+    if (aboutMenuIds.includes(databaseId)) {
+      context.siblings = aboutMenuIds;
+    }
+
     if (siblings?.node?.wpChildren?.nodes?.length > 0) {
       context.siblings = siblings.node.wpChildren.nodes
         .sort(sortByMenuOrder)
