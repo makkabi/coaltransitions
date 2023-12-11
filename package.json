@@ -3,7 +3,7 @@
   "description": "",
   "license": "MIT",
   "scripts": {
-    "develop": "NODE_TLS_REJECT_UNAUTHORIZED=0 gatsby develop",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 gatsby develop",
     "build": "gatsby build && npm run build-functions",
     "serve": "gatsby serve",
     "lint": "eslint --fix --ext .js,.jsx .",
