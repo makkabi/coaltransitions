@@ -68,12 +68,14 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
               );
             /* eslint-enable no-unreachable */
 
-            case `${typePrefix}RelatedPublications`:
+            case `${typePrefix}RelatedPublications`: {
+              const { ...props } = block;
               return (
                 <div className="publications-list-container" key={index}>
                   <PublicationList {...props} />
                 </div>
               );
+            }
           }
         }
 
