@@ -70,3 +70,7 @@
 [[redirects]]
   from = "/tools-resist/*"
   to = "/tools/coping-strategies/:splat"
+
+[[redirects]]
+  from = "/tools/maps-2"
+  to = "/tools/maps"
