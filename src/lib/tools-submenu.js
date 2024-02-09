@@ -4,6 +4,10 @@
 
 export const submenuItems = [
   {
+    title: 'JT-Ready',
+    uri: '/tools/jtready/',
+  },
+  {
     title: 'Coping Strategies',
     uri: '/tools/coping-strategies/',
   },
