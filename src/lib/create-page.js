@@ -23,7 +23,6 @@ const fetchPages = (graphql) =>
           databaseId
           isFrontPage
           uri
-
           wpChildren {
             nodes {
               ... on WpPage {
@@ -58,7 +57,11 @@ const createPages = (
   { createPage, createRedirect }
 ) => {
   pages.forEach(({ uri, databaseId, isFrontPage, wpChildren, siblings }) => {
-    const template = isFrontPage ? 'frontpage/index' : 'page/index';
+    let template = isFrontPage ? 'frontpage/index' : 'page/index';
+    // IDs of pages with a big header, e.g. /tools/jtready/
+    if (databaseId === 7813) {
+      template = 'page-with-header/index';
+    }
     const pageHasChildren = wpChildren.nodes.length !== 0;
 
     const context = {
