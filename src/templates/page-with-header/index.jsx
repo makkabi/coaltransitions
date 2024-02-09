@@ -30,6 +30,12 @@ const Page = ({
   image.sizes = '100vw';
   image.width = 1920;
   image.height = 1080;
+
+  image.images.sources.forEach((source) => {
+    source.sizes = '100vw';
+  });
+
+  image.images.fallback.sizes = '100vw';
   return (
     <React.Fragment>
       <style jsx>{style}</style>
@@ -41,14 +47,13 @@ const Page = ({
       {/* <SubMenu {...subMenuItems} />*/}
       <header className="header">
         <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
-
+        <style>{`.header img { width: 100%; }`}</style>
         {image && (
           <Figure
             altText={featuredImage.altText}
             image={image}
             caption={featuredImage.caption}
             captionClassName={captionStyle.className}
-            sizes="100vw"
           />
         )}
       </header>
