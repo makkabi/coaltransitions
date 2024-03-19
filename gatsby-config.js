@@ -71,6 +71,8 @@ module.exports = {
       options: {
         defaults: {
           formats: ['auto', 'avif', 'webp'],
+          quality: 70,
+          breakpoints: [750, 1080, 1366, 1920],
         },
       },
     },
