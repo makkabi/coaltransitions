@@ -27,15 +27,18 @@ const Page = ({
   },
 }) => {
   const image = getImage(featuredImage?.node?.localFile);
-  image.sizes = '100vw';
-  image.width = 1920;
-  image.height = 1080;
+  if (image) {
+    image.sizes = '100vw';
+    image.width = 1920;
+    image.height = 1080;
 
-  image.images.sources.forEach((source) => {
-    source.sizes = '100vw';
-  });
+    image.images.sources.forEach((source) => {
+      source.sizes = '100vw';
+    });
 
-  image.images.fallback.sizes = '100vw';
+    image.images.fallback.sizes = '100vw';
+  }
+
   return (
     <React.Fragment>
       <style jsx>{style}</style>
