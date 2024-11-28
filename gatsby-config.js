@@ -15,6 +15,7 @@ module.exports = {
     socialMediaChannels: {
       twitter: 'https://twitter.com/coaltransitions',
       linkedIn: 'https://www.linkedin.com/company/coalexit/',
+      bluesky: 'https://bsky.app/profile/coaltransitions.bsky.social',
     },
   },
 
