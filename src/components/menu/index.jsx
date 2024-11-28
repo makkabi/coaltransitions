@@ -32,6 +32,7 @@ export const fragment = graphql`
     socialMediaChannels {
       twitter
       linkedIn
+      bluesky
     }
   }
 `;
