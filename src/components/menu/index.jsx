@@ -16,6 +16,7 @@ import BurgerMenu from './BurgerMenu';
 import LinkedInIcon from '../../../static/icons/linkedin.svg';
 import Logo from '../../../static/logos/coal-transitions.svg';
 import TwitterIcon from '../../../static/icons/twitter.svg';
+import BlueskyIcon from '../../../static/icons/bluesky.svg';
 
 export const fragment = graphql`
   fragment Menu on WpMenu {
@@ -90,6 +91,16 @@ export default ({ items: { nodes: items = [] }, socialMediaChannels }) => (
               className={socialMediaLink.className}
             >
               <LinkedInIcon className={socialMediaIcon.className} />
+            </a>
+          )}
+
+          {socialMediaChannels?.bluesky && (
+            <a
+              href={socialMediaChannels.bluesky}
+              aria-label="Follow us on Bluesky"
+              className={socialMediaLink.className}
+            >
+              <BlueskyIcon className={socialMediaIcon.className} />
             </a>
           )}
         </li>

@@ -13,6 +13,7 @@ import BarsIcon from '../../../../static/icons/bars-thin.svg';
 import LinkedInIcon from '../../../../static/icons/linkedin.svg';
 import TimesIcon from '../../../../static/icons/times-thin.svg';
 import TwitterIcon from '../../../../static/icons/twitter.svg';
+import BlueskyIcon from '../../../../static/icons/bluesky.svg';
 
 Modal.setAppElement(`#___gatsby`);
 
@@ -90,6 +91,16 @@ const BurgerMenu = ({ items, socialMediaChannels }) => {
                   className="social-media__item"
                 >
                   <LinkedInIcon className={socialMediaIcon.className} />
+                </a>
+              )}
+
+              {socialMediaChannels?.bluesky && (
+                <a
+                  href={socialMediaChannels.bluesky}
+                  aria-label="Follow us on Bluesky"
+                  className="social-media__item"
+                >
+                  <BlueskyIcon className={socialMediaIcon.className} />
                 </a>
               )}
             </div>
