@@ -70,7 +70,7 @@ const createPages = (
     };
 
     // Hack, since the query no longer returned the siblings of the project page
-    const projectMenuIds = [2070, 4683, 2130, 2188];
+    const projectMenuIds = [2070, 2130, 2188];
 
     if (projectMenuIds.includes(databaseId)) {
       context.siblings = projectMenuIds;
