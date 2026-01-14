@@ -74,3 +74,19 @@
 [[redirects]]
   from = "/tools/maps-2"
   to = "/tools/maps"
+
+[[redirects]]
+  from = "/projects/trajects/"
+  to = "/trajects/trajects-home/"
+
+[[redirects]]
+  from = "/projects/trajects/trajects-home/"
+  to = "/trajects/trajects-home/"
+
+[[redirects]]
+  from = "/projects/trajects/jrs-2022/"
+  to = "/trajects/jrs-2022/"
+
+[[redirects]]
+  from = "/projects/trajects/srs-2022/"
+  to = "/trajects/srs-2022/"
